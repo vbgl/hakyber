@@ -13,6 +13,7 @@ fn __indcpa_keypair(reg u64 pkp, reg u64 skp, reg ptr u8[KYBER_SYMBYTES] randomn
   stack u8[32] inbuf;
   reg u64 t64;
   reg u64 zero;
+  reg u64 nonce;
   inline int i;
 
   stack u64 spkp;
@@ -40,11 +41,13 @@ fn __indcpa_keypair(reg u64 pkp, reg u64 skp, reg ptr u8[KYBER_SYMBYTES] randomn
   a = __gen_matrix(publicseed, 0);
 
   for i = 0 to KYBER_K {
-    skpv[i * KYBER_N : KYBER_N] = _poly_getnoise(skpv[i * KYBER_N : KYBER_N], noiseseed, i);
+    nonce = i;
+    skpv[i * KYBER_N : KYBER_N] = _poly_getnoise(skpv[i * KYBER_N : KYBER_N], noiseseed, nonce);
   }
 
   for i = 0 to KYBER_K {
-    e[i * KYBER_N : KYBER_N] = _poly_getnoise(e[i * KYBER_N : KYBER_N], noiseseed, 3 + i);
+    nonce = 3 + i;
+    e[i * KYBER_N : KYBER_N] = _poly_getnoise(e[i * KYBER_N : KYBER_N], noiseseed, nonce);
   }
 
   skpv = __polyvec_ntt(skpv);
