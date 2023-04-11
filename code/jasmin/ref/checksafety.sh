@@ -31,4 +31,4 @@ fi
 
 FILE="jkem_$1.jazz"
 
-time $JASMINC -checksafety -safetyparam $PARAM $FILE
+time $JASMINC -timings -checksafety -safetyparam $PARAM $FILE
