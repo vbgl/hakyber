@@ -17,8 +17,8 @@ fn __verify(reg u64 ctp, reg ptr u8[MLKEM_INDCPA_CIPHERTEXTBYTES] ctpc) -> reg u
   {
     f = ctpc.[u256 32*i];
     g = (u256)[ctp + 32*i];
-    f = #VPXOR_256(f, g);
-    h = #VPOR_256(h, f);
+    f ^= g;
+    h |= f;
   }
 
   _, _, _, _, zf = #VPTEST_256(h, h);

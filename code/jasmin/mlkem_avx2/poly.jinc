@@ -15,7 +15,7 @@ fn _poly_add2(reg ptr u16[MLKEM_N] rp bp) -> stack u16[MLKEM_N]
   for i = 0 to 16 {
     a = rp.[u256 32*i];
     b = bp.[u256 32*i];
-    r = #VPADD_16u16(a, b);
+    r = a +16u16 b;
     rp.[u256 32*i] = r;
   }
 
@@ -95,14 +95,14 @@ fn __schoolbook16x(reg u256 are aim bre bim zeta zetaqinv qx16 qinvx16, inline i
   zbd0, zbd1 = __wmul_16u16(zaim, bim);
 
   if (sign == 0) {
-    x0 = #VPADD_8u32(ac0, zbd0);
-    x1 = #VPADD_8u32(ac1, zbd1);
+    x0 = ac0 +8u32 zbd0;
+    x1 = ac1 +8u32 zbd1;
   } else {
-    x0 = #VPSUB_8u32(ac0, zbd0);
-    x1 = #VPSUB_8u32(ac1, zbd1);
+    x0 = ac0 -8u32 zbd0;
+    x1 = ac1 -8u32 zbd1;
   }
-  y0 = #VPADD_8u32(bc0, ad0);
-  y1 = #VPADD_8u32(bc1, ad1);
+  y0 = bc0 +8u32 ad0;
+  y1 = bc1 +8u32 ad1;
 
   _zero = #set0_256();
   x0, x1 = __w256_deinterleave_u16(_zero, x0, x1);
@@ -367,33 +367,33 @@ fn _poly_frombytes(reg ptr u16[MLKEM_N] rp, reg u64 ap) -> reg ptr u16[MLKEM_N]
     t0, t4 = __shuffle1(t1, t4);
     t1, t5 = __shuffle1(t2, t5);
 
-    t7 = #VPSRL_16u16(t6, 12);
-    t8 = #VPSLL_16u16(t3, 4);
-    t7 = #VPOR_256(t7, t8);
-    t6 = #VPAND_256(mask, t6);
-    t7 = #VPAND_256(mask, t7);
+    t7 = t6 >>16u16 12;
+    t8 = t3 <<16u16 4;
+    t7 = t7 | t8;
+    t6 = mask & t6;
+    t7 = mask & t7;
 
-    t8 = #VPSRL_16u16(t3, 8);
-    t9 = #VPSLL_16u16(t0, 8);
-    t8 = #VPOR_256(t8,t9);
-    t8 = #VPAND_256(mask,t8);
+    t8 = t3 >>16u16 8;
+    t9 = t0 <<16u16 8;
+    t8 = t8 | t9;
+    t8 = mask & t8;
 
-    t9 = #VPSRL_16u16(t0, 4);
-    t9 = #VPAND_256(mask, t9);
+    t9 = t0 >>16u16 4;
+    t9 = mask & t9;
 
-    t10 = #VPSRL_16u16(t4, 12);
-    t11 = #VPSLL_16u16(t1, 4);
-    t10 = #VPOR_256(t10, t11);
-    t4 = #VPAND_256(mask,t4);
-    t10 = #VPAND_256(mask, t10);
+    t10 = t4 >>16u16 12;
+    t11 = t1 <<16u16 4;
+    t10 = t10 | t11;
+    t4 = mask & t4;
+    t10 = mask & t10;
 
-    t11 = #VPSRL_16u16(t1, 8);
-    tt = #VPSLL_16u16(t5, 8);
-    t11 = #VPOR_256(t11, tt);
-    t11 = #VPAND_256(mask, t11);
+    t11 = t1 >>16u16 8;
+    tt = t5 <<16u16 8;
+    t11 = t11 | tt;
+    t11 = mask & t11;
 
-    tt = #VPSRL_16u16(t5, 4);
-    tt = #VPAND_256(mask, tt);
+    tt = t5 >>16u16 4;
+    tt = mask & tt;
 
     rp[u256 8*i] = t6;
     rp[u256 8*i + 1] = t7;
@@ -565,29 +565,29 @@ fn __cbd3(reg ptr u16[MLKEM_N] rp, reg ptr u8[MLKEM_ETA1*MLKEM_N/4+(MLKEM_ETA1 -
     f0 = #VPERMQ(f0, 0x94);
     f0 = #VPSHUFB_256(f0, shufbidx);
 
-    f1 = #VPSRL_8u32(f0, 1);
-    f2 = #VPSRL_8u32(f0, 2);
-    f0 = #VPAND_256(mask249, f0);
-    f1 = #VPAND_256(mask249, f1);
-    f2 = #VPAND_256(mask249, f2);
-    f0 = #VPADD_8u32(f0, f1);
-    f0 = #VPADD_8u32(f0, f2);
+    f1 = f0 >>8u32 1;
+    f2 = f0 >>8u32 2;
+    f0 = mask249 & f0;
+    f1 = mask249 & f1;
+    f2 = mask249 & f2;
+    f0 = f0 +8u32 f1;
+    f0 = f0 +8u32 f2;
 
-    f1 = #VPSRL_8u32(f0, 3);
-    f0 = #VPADD_8u32(f0, mask6DB);
-    f0 = #VPSUB_8u32(f0, f1);
+    f1 = f0 >>8u32 3;
+    f0 = f0 +8u32 mask6DB;
+    f0 = f0 -8u32 f1;
 
-    f1 = #VPSLL_8u32(f0, 10);
-    f2 = #VPSRL_8u32(f0, 12);
-    f3 = #VPSRL_8u32(f0, 2);
-    f0 = #VPAND_256(f0, mask07);
-    f1 = #VPAND_256(f1, mask70);
-    f2 = #VPAND_256(f2, mask07);
-    f3 = #VPAND_256(f3, mask70);
-    f0 = #VPADD_16u16(f0, f1);
-    f1 = #VPADD_16u16(f2, f3);
-    f0 = #VPSUB_16u16(f0, mask3);
-    f1 = #VPSUB_16u16(f1, mask3);
+    f1 = f0 <<8u32 10;
+    f2 = f0 >>8u32 12;
+    f3 = f0 >>8u32 2;
+    f0 = f0 & mask07;
+    f1 = f1 & mask70;
+    f2 = f2 & mask07;
+    f3 = f3 & mask70;
+    f0 = f0 +16u16 f1;
+    f1 = f2 +16u16 f3;
+    f0 = f0 -16u16 mask3;
+    f1 = f1 -16u16 mask3;
 
     f2 = #VPUNPCKL_8u32(f0, f1);
     f3 = #VPUNPCKH_8u32(f0, f1);
@@ -1264,7 +1264,7 @@ fn _poly_sub(reg ptr u16[MLKEM_N] rp ap bp) -> reg ptr u16[MLKEM_N]
   for i = 0 to 16 {
     a = ap.[u256 32*i];
     b = bp.[u256 32*i];
-    r = #VPSUB_16u16(a, b);
+    r = a -16u16 b;
     rp.[u256 32*i] = r;
   }
 

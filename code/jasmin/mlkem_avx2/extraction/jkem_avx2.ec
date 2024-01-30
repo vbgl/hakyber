@@ -692,10 +692,10 @@ module M(SC:Syscall_t) = {
     
     var t:W256.t;
     
-    r <- VPSUB_16u16 r qx16;
-    t <- VPSRA_16u16 r (W8.of_int 15);
-    t <- VPAND_256 t qx16;
-    r <- VPADD_16u16 t r;
+    r <- (r \vsub16u256 qx16);
+    t <- (r \vsar16u256 (W8.of_int 15));
+    t <- (t `&` qx16);
+    r <- (t \vadd16u256 r);
     return (r);
   }
   
@@ -1291,8 +1291,8 @@ module M(SC:Syscall_t) = {
     var r:W256.t;
     var t256:W256.t;
     
-    r <- VPSLL_4u64 a (W8.of_int o);
-    t256 <- VPSRL_4u64 a (W8.of_int (64 - o));
+    r <- (a \vshl64u256 (W8.of_int o));
+    t256 <- (a \vshr64u256 (W8.of_int (64 - o)));
     r <- (r `|` t256);
     return (r);
   }
@@ -2477,7 +2477,7 @@ module M(SC:Syscall_t) = {
     while (i < 16) {
       a <- (get256_direct (WArray512.init16 (fun i_0 => rp.[i_0])) (32 * i));
       b <- (get256_direct (WArray512.init16 (fun i_0 => bp.[i_0])) (32 * i));
-      r <- VPADD_16u16 a b;
+      r <- (a \vadd16u256 b);
       rp <-
       Array256.init
       (WArray512.get16 (WArray512.set256_direct (WArray512.init16 (fun i_0 => rp.[i_0])) (32 * i) (r)));
@@ -2580,14 +2580,14 @@ module M(SC:Syscall_t) = {
     (bc0, bc1) <@ __wmul_16u16 (aim, bre);
     (zbd0, zbd1) <@ __wmul_16u16 (zaim, bim);
     if ((sign = 0)) {
-      x0 <- VPADD_8u32 ac0 zbd0;
-      x1 <- VPADD_8u32 ac1 zbd1;
+      x0 <- (ac0 \vadd32u256 zbd0);
+      x1 <- (ac1 \vadd32u256 zbd1);
     } else {
-      x0 <- VPSUB_8u32 ac0 zbd0;
-      x1 <- VPSUB_8u32 ac1 zbd1;
+      x0 <- (ac0 \vsub32u256 zbd0);
+      x1 <- (ac1 \vsub32u256 zbd1);
     }
-    y0 <- VPADD_8u32 bc0 ad0;
-    y1 <- VPADD_8u32 bc1 ad1;
+    y0 <- (bc0 \vadd32u256 ad0);
+    y1 <- (bc1 \vadd32u256 ad1);
     _zero <- set0_256 ;
     (x0, x1) <@ __w256_deinterleave_u16 (_zero, x0, x1);
     (y0, y1) <@ __w256_deinterleave_u16 (_zero, y0, y1);
@@ -2923,28 +2923,28 @@ module M(SC:Syscall_t) = {
       (t6, t3) <@ __shuffle1 (t0, t3);
       (t0, t4) <@ __shuffle1 (t1, t4);
       (t1, t5) <@ __shuffle1 (t2, t5);
-      t7 <- VPSRL_16u16 t6 (W8.of_int 12);
-      t8 <- VPSLL_16u16 t3 (W8.of_int 4);
-      t7 <- VPOR_256 t7 t8;
-      t6 <- VPAND_256 mask t6;
-      t7 <- VPAND_256 mask t7;
-      t8 <- VPSRL_16u16 t3 (W8.of_int 8);
-      t9 <- VPSLL_16u16 t0 (W8.of_int 8);
-      t8 <- VPOR_256 t8 t9;
-      t8 <- VPAND_256 mask t8;
-      t9 <- VPSRL_16u16 t0 (W8.of_int 4);
-      t9 <- VPAND_256 mask t9;
-      t10 <- VPSRL_16u16 t4 (W8.of_int 12);
-      t11 <- VPSLL_16u16 t1 (W8.of_int 4);
-      t10 <- VPOR_256 t10 t11;
-      t4 <- VPAND_256 mask t4;
-      t10 <- VPAND_256 mask t10;
-      t11 <- VPSRL_16u16 t1 (W8.of_int 8);
-      tt <- VPSLL_16u16 t5 (W8.of_int 8);
-      t11 <- VPOR_256 t11 tt;
-      t11 <- VPAND_256 mask t11;
-      tt <- VPSRL_16u16 t5 (W8.of_int 4);
-      tt <- VPAND_256 mask tt;
+      t7 <- (t6 \vshr16u256 (W8.of_int 12));
+      t8 <- (t3 \vshl16u256 (W8.of_int 4));
+      t7 <- (t7 `|` t8);
+      t6 <- (mask `&` t6);
+      t7 <- (mask `&` t7);
+      t8 <- (t3 \vshr16u256 (W8.of_int 8));
+      t9 <- (t0 \vshl16u256 (W8.of_int 8));
+      t8 <- (t8 `|` t9);
+      t8 <- (mask `&` t8);
+      t9 <- (t0 \vshr16u256 (W8.of_int 4));
+      t9 <- (mask `&` t9);
+      t10 <- (t4 \vshr16u256 (W8.of_int 12));
+      t11 <- (t1 \vshl16u256 (W8.of_int 4));
+      t10 <- (t10 `|` t11);
+      t4 <- (mask `&` t4);
+      t10 <- (mask `&` t10);
+      t11 <- (t1 \vshr16u256 (W8.of_int 8));
+      tt <- (t5 \vshl16u256 (W8.of_int 8));
+      t11 <- (t11 `|` tt);
+      t11 <- (mask `&` t11);
+      tt <- (t5 \vshr16u256 (W8.of_int 4));
+      tt <- (mask `&` tt);
       rp <-
       Array256.init
       (WArray512.get16 (WArray512.set256 (WArray512.init16 (fun i_0 => rp.[i_0])) (8 * i) (t6)));
@@ -3109,27 +3109,27 @@ module M(SC:Syscall_t) = {
       (get256_direct (WArray128.init8 (fun i_0 => buf.[i_0])) (24 * i));
       f0 <- VPERMQ f0 (W8.of_int 148);
       f0 <- VPSHUFB_256 f0 shufbidx;
-      f1 <- VPSRL_8u32 f0 (W8.of_int 1);
-      f2 <- VPSRL_8u32 f0 (W8.of_int 2);
-      f0 <- VPAND_256 mask249 f0;
-      f1 <- VPAND_256 mask249 f1;
-      f2 <- VPAND_256 mask249 f2;
-      f0 <- VPADD_8u32 f0 f1;
-      f0 <- VPADD_8u32 f0 f2;
-      f1 <- VPSRL_8u32 f0 (W8.of_int 3);
-      f0 <- VPADD_8u32 f0 mask6DB;
-      f0 <- VPSUB_8u32 f0 f1;
-      f1 <- VPSLL_8u32 f0 (W8.of_int 10);
-      f2 <- VPSRL_8u32 f0 (W8.of_int 12);
-      f3 <- VPSRL_8u32 f0 (W8.of_int 2);
-      f0 <- VPAND_256 f0 mask07;
-      f1 <- VPAND_256 f1 mask70;
-      f2 <- VPAND_256 f2 mask07;
-      f3 <- VPAND_256 f3 mask70;
-      f0 <- VPADD_16u16 f0 f1;
-      f1 <- VPADD_16u16 f2 f3;
-      f0 <- VPSUB_16u16 f0 mask3;
-      f1 <- VPSUB_16u16 f1 mask3;
+      f1 <- (f0 \vshr32u256 (W8.of_int 1));
+      f2 <- (f0 \vshr32u256 (W8.of_int 2));
+      f0 <- (mask249 `&` f0);
+      f1 <- (mask249 `&` f1);
+      f2 <- (mask249 `&` f2);
+      f0 <- (f0 \vadd32u256 f1);
+      f0 <- (f0 \vadd32u256 f2);
+      f1 <- (f0 \vshr32u256 (W8.of_int 3));
+      f0 <- (f0 \vadd32u256 mask6DB);
+      f0 <- (f0 \vsub32u256 f1);
+      f1 <- (f0 \vshl32u256 (W8.of_int 10));
+      f2 <- (f0 \vshr32u256 (W8.of_int 12));
+      f3 <- (f0 \vshr32u256 (W8.of_int 2));
+      f0 <- (f0 `&` mask07);
+      f1 <- (f1 `&` mask70);
+      f2 <- (f2 `&` mask07);
+      f3 <- (f3 `&` mask70);
+      f0 <- (f0 \vadd16u256 f1);
+      f1 <- (f2 \vadd16u256 f3);
+      f0 <- (f0 \vsub16u256 mask3);
+      f1 <- (f1 \vsub16u256 mask3);
       f2 <- VPUNPCKL_8u32 f0 f1;
       f3 <- VPUNPCKH_8u32 f0 f1;
       f0 <- VPERM2I128 f2 f3 (W8.of_int 32);
@@ -3916,7 +3916,7 @@ module M(SC:Syscall_t) = {
     while (i < 16) {
       a <- (get256_direct (WArray512.init16 (fun i_0 => ap.[i_0])) (32 * i));
       b <- (get256_direct (WArray512.init16 (fun i_0 => bp.[i_0])) (32 * i));
-      r <- VPSUB_16u16 a b;
+      r <- (a \vsub16u256 b);
       rp <-
       Array256.init
       (WArray512.get16 (WArray512.set256_direct (WArray512.init16 (fun i_0 => rp.[i_0])) (32 * i) (r)));
@@ -4897,8 +4897,8 @@ module M(SC:Syscall_t) = {
       f <-
       (get256_direct (WArray1088.init8 (fun i_0 => ctpc.[i_0])) (32 * i));
       g <- (loadW256 Glob.mem (W64.to_uint (ctp + (W64.of_int (32 * i)))));
-      f <- VPXOR_256 f g;
-      h <- VPOR_256 h f;
+      f <- (f `^` g);
+      h <- (h `|` f);
       i <- i + 1;
     }
     ( _0,  _1,  _2,  _3, zf) <- VPTEST_256 h h;

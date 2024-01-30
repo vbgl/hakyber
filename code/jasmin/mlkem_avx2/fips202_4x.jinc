@@ -28,8 +28,8 @@ inline fn __rol_4u64(reg u256 a, inline int o) -> reg u256
 	reg u256 r;
 	reg u256 t256;
 
-	r = #VPSLL_4u64(a, o);
-	t256 = #VPSRL_4u64(a, 64 - o);
+	r = a <<4u64 o;
+	t256 = a >>4u64 (64 - o);
 
 	r |= t256;
 

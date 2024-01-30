@@ -8,10 +8,10 @@ inline
 fn __csubq(reg u256 r qx16) -> reg u256
 {
   reg u256 t;
-  r = #VPSUB_16u16(r, qx16);
-  t = #VPSRA_16u16(r, 15);
-  t = #VPAND_256(t, qx16);
-  r = #VPADD_16u16(t, r);
+  r = r -16u16 qx16;
+  t = r >>16s16 15;
+  t = t & qx16;
+  r = t +16u16 r;
   return r;
 }
 
