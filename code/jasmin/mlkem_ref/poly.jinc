@@ -65,6 +65,7 @@ fn _poly_basemul(reg ptr u16[MLKEM_N] rp, reg const ptr u16[MLKEM_N] ap bp) -> r
   zetasctr = 64;
   i = 0;
 
+  #[bounded]
   while(i < MLKEM_N)
   {
     zetasp = jzetas;
