@@ -21,7 +21,8 @@ let
     ocamlPackages = oc;
     why3 = why;
   };
-  ae = callPackage ./alt-ergo.nix {} ;
+  #ae = callPackage ./alt-ergo.nix {} ;
+  ae = alt-ergo.override { ocamlPackages = oc; };
 in
 
 mkShell {
