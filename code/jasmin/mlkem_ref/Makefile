@@ -80,6 +80,20 @@ test/test_polyvec_%: test/test_polyvec_%.c $(HEADERS) $(SOURCES) jpolyvec.s
 %.s: %.jazz
 	$(JASMINC) -o $@ $(JFLAGS) $^ 
 
+keypair_derand.safety:
+	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_ref_keypair_derand -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_ref_keypair_derand>public_key,secret_key,fixedrand;' jkem.jazz 2>&1 | tee $@
+
+keypair.safety:
+	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_ref_keypair -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_ref_keypair>public_key,secret_key;' jkem.jazz 2>&1 | tee $@
+
+enc_derand.safety:
+	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_ref_enc_derand -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_ref_enc_derand>ciphertext,shared_secret,public_key,fixedrand;' jkem.jazz 2>&1 | tee $@
+
+enc.safety:
+	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_ref_enc -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_ref_enc>ciphertext,shared_secret,public_key;' jkem.jazz 2>&1 | tee $@
+
+dec.safety:
+	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_ref_dec -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_ref_dec>shared_secret,ciphertext,secret_key;' jkem.jazz 2>&1 | tee $@
 
 .PHONY: ct clean
 

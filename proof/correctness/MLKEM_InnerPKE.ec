@@ -487,7 +487,7 @@ wp;while(stransposed{1} = (if trans{2} then W64.one else W64.zero) /\
          (a{2}.[k %/ 768,k %% 768 %/ 256])%Matrix.[k %% 256] = incoeff (to_sint r{1}.[k]) /\
          bpos16 r{1}.[k] q); last by auto => /> /#.
 
-seq 5 4 : (#pre /\ lift_array256 poly{1} = aa{2} /\
+seq 7 4 : (#pre /\ lift_array256 poly{1} = aa{2} /\
             forall k, 0 <= k < 256 =>
                bpos16 poly{1}.[k] q); last first.
 
@@ -543,6 +543,12 @@ seq 3 1 : (
 
   by smt().
 
+(* Initialisation of poly *)
+seq 2 0 : #pre.
++ while{1} (0 <= to_uint ctr{1} <= 64) (64 - to_uint ctr{1}).
+  + auto => /> 3?; rewrite ultE to_uintD_small !to_uint_small /#.
+  auto => /> *; rewrite ultE /= /#.
+
 (* sampling loop *)
 
 while(to_uint ctr{1} = j0{2} /\ 0<= j0{2} <= 256 /\ state{1} = XOF.state{2} /\
@@ -592,7 +598,8 @@ seq 4 2 : (to_uint ctr0{1} = j0{2} /\
            #{/~pos{1} \ult (of_int (168 - 2))%W64}post).
 
 + sp 1 0; if; 1: by move => &1 &2; rewrite ultE qE; smt().
-  + sp 3 2; if{2}.
+  + rcondt{1} 0; 1: by move=> &m; auto => /> *; rewrite ultE /= /#.
+    sp 3 2; if{2}.
     + rcondt{1} 1; 1: by move => *; auto => /> *; rewrite ultE; smt().
       rcondt{1} 1; 1: by move => *; auto => /> *; rewrite ultE /= to_uintD_small /= /#.
       auto => /> &1 aar ctrl rpl 8?; rewrite ultE /= => *; do split; 2..3:smt().

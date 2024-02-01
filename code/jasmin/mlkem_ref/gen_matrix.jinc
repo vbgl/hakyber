@@ -76,6 +76,13 @@ fn __gen_matrix(stack u8[MLKEM_SYMBYTES] seed, reg u64 transposed) -> stack u16[
     extseed[j] = c;
   }
 
+  ctr = MLKEM_K * MLKEM_VECN / 4;
+  #bounded
+  while {
+    ctr -= 1;
+    r[u64 ctr] = ctr;
+  } (ctr != 0)
+
   for i=0 to MLKEM_K
   {
     for j = 0 to MLKEM_K
@@ -94,7 +101,16 @@ fn __gen_matrix(stack u8[MLKEM_SYMBYTES] seed, reg u64 transposed) -> stack u16[
 
       state = _shake128_absorb34(state, extseed);
 
+      // Initialize the poly array
       ctr = 0;
+      #bounded
+      while (ctr < MLKEM_N / 4) {
+        poly[u64 (int) ctr] = ctr;
+        ctr += 1;
+      }
+
+      ctr = 0;
+      #no_termination_check
       while (ctr < MLKEM_N)
       {
         sctr = ctr;

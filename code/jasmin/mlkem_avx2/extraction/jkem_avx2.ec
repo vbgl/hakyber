@@ -4421,12 +4421,12 @@ module M(SC:Syscall_t) = {
     var j:int;
     var c:W8.t;
     var extseed:W8.t Array34.t;
+    var ctr:W64.t;
     var i:int;
     var state:W64.t Array25.t;
-    var ctr:W64.t;
+    var poly:W16.t Array256.t;
     var sctr:W64.t;
     var buf:W8.t Array168.t;
-    var poly:W16.t Array256.t;
     var k:W64.t;
     var rij:W16.t Array256.t;
     var t:W16.t;
@@ -4443,6 +4443,17 @@ module M(SC:Syscall_t) = {
       extseed.[j] <- c;
       j <- j + 1;
     }
+    ctr <- (W64.of_int ((3 * (3 * 256)) %/ 4));
+    ctr <- (ctr - (W64.of_int 1));
+    r <-
+    Array2304.init
+    (WArray4608.get16 (WArray4608.set64 (WArray4608.init16 (fun i_0 => r.[i_0])) (W64.to_uint ctr) (ctr)));
+    while ((ctr <> (W64.of_int 0))) {
+      ctr <- (ctr - (W64.of_int 1));
+      r <-
+      Array2304.init
+      (WArray4608.get16 (WArray4608.set64 (WArray4608.init16 (fun i_0 => r.[i_0])) (W64.to_uint ctr) (ctr)));
+    }
     i <- 0;
     while (i < 3) {
       j <- 0;
@@ -4456,6 +4467,14 @@ module M(SC:Syscall_t) = {
           extseed.[(32 + 1)] <- (W8.of_int j);
         }
         state <@ _shake128_absorb34 (state, extseed);
+        ctr <- (W64.of_int 0);
+        
+        while ((ctr \ult (W64.of_int (256 %/ 4)))) {
+          poly <-
+          Array256.init
+          (WArray512.get16 (WArray512.set64 (WArray512.init16 (fun i_0 => poly.[i_0])) (W64.to_uint ctr) (ctr)));
+          ctr <- (ctr + (W64.of_int 1));
+        }
         ctr <- (W64.of_int 0);
         
         while ((ctr \ult (W64.of_int 256))) {
