@@ -2,8 +2,13 @@ name: "Check"
 on:
   pull_request:
   push:
+
+env:
+  NIXPKGS_ALLOW_UNFREE: 1
+
 jobs:
   tests:
+    name: Build & Prove
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
