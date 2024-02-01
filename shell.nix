@@ -1,14 +1,24 @@
 with import <nixpkgs> {};
 
-let ec = (easycrypt.overrideDerivation (_: {
-  src = fetchFromGitHub {
-    owner = "EasyCrypt";
-    repo = "easycrypt";
-    rev = "f7992e1fe5a443a9dcbce2941f708ea7bc78f6e0";
-    hash = "sha256-CdgF2bFzUPNMQoGCOsJaqKp4pDBMqtFZXB0y1Miwm2c=";
+let
+  oc = ocaml-ng.ocamlPackages_4_14;
+  why = why3.override {
+    ocamlPackages = oc;
+    ideSupport = false;
+    coqPackages = { coq = null; flocq = null; };
   };
-})).override { ocamlPackages = ocaml-ng.ocamlPackages_4_14; }
-; in
+  ec = (easycrypt.overrideDerivation (_: {
+    src = fetchFromGitHub {
+      owner = "EasyCrypt";
+      repo = "easycrypt";
+      rev = "f7992e1fe5a443a9dcbce2941f708ea7bc78f6e0";
+      hash = "sha256-CdgF2bFzUPNMQoGCOsJaqKp4pDBMqtFZXB0y1Miwm2c=";
+    };
+  })).override {
+    ocamlPackages = oc;
+    why3 = why;
+  };
+in
 
 mkShell {
   packages = [
