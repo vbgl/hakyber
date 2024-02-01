@@ -8,4 +8,6 @@ mkShell {
     cvc4
     z3
   ];
+
+  JASMINC=jasminc
 }
