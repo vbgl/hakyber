@@ -335,7 +335,7 @@ module M(SC:Syscall_t) = {
     constptr <- roundconstants;
     rctr <- (W64.of_int 0);
     
-    while ((rctr \ult (W64.of_int 192))) {
+    while ((rctr \ult (W64.of_int 185))) {
       state <@ __theta (state);
       state <@ __rho (state);
       state <@ __pi (state);
