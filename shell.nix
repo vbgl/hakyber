@@ -9,5 +9,5 @@ mkShell {
     z3
   ];
 
-  JASMINC=jasminc
+  JASMINC = "jasminc";
 }
