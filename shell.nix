@@ -1,4 +1,7 @@
-with import <nixpkgs> {};
+with import (fetchTarball {
+    url = https://github.com/NixOS/nixpkgs/archive/53fbe41cf76b6a685004194e38e889bc8857e8c2.tar.gz;
+    sha256 = "sha256:1fyc4kbhv7rrfzya74yprvd70prlcsv56b7n0fv47kn7rznvvr2b";
+}) {};
 
 let
   oc = ocaml-ng.ocamlPackages_4_14;
@@ -7,7 +10,7 @@ let
     ideSupport = false;
     coqPackages = { coq = null; flocq = null; };
   };
-  ec = (easycrypt.overrideDerivation (_: {
+  ec = (easycrypt.overrideAttrs (_: {
     src = fetchFromGitHub {
       owner = "EasyCrypt";
       repo = "easycrypt";
@@ -18,12 +21,13 @@ let
     ocamlPackages = oc;
     why3 = why;
   };
+  ae = callPackage ./alt-ergo.nix {} ;
 in
 
 mkShell {
   packages = [
     ec
-    alt-ergo
+    ae
     cvc4
     z3
   ];
