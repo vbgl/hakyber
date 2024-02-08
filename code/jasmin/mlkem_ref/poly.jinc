@@ -592,6 +592,7 @@ fn _poly_tobytes(reg u64 rp, reg ptr u16[MLKEM_N] a) -> reg ptr u16[MLKEM_N]
 
   i = 0;
   j = 0;
+  #bounded
   while (i < MLKEM_N)
   {
     t0 = a[(int)i]; 

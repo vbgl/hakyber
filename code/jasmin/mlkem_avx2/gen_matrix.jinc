@@ -97,6 +97,7 @@ fn __gen_matrix(stack u8[MLKEM_SYMBYTES] seed, reg u64 transposed) -> stack u16[
       state = _shake128_absorb34(state, extseed);
 
       ctr = 0;
+      #[no_termination_check]
       while (ctr < MLKEM_N)
       {
         sctr = ctr;
