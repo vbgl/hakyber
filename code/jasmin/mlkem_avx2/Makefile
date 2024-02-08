@@ -36,6 +36,21 @@ test/speed_kem: test/speed_kem.c $(JINC) $(SOURCES) jkem.s
 	$(JASMINC) -o $@ $(JFLAGS) $^ 
 
 
+keypair_derand.safety:
+	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_avx2_keypair_derand -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_avx2_keypair_derand>public_key,secret_key,coins;' jkem.jazz 2>&1 | tee $@
+
+keypair.safety:
+	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_avx2_keypair -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_avx2_keypair>public_key,secret_key;' jkem.jazz 2>&1 | tee $@
+
+enc_derand.safety:
+	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_avx2_enc_derand -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_avx2_enc_derand>ciphertext,shared_secret,public_key,coins;' jkem.jazz 2>&1 | tee $@
+
+enc.safety:
+	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_avx2_enc -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_avx2_enc>ciphertext,shared_secret,public_key;' jkem.jazz 2>&1 | tee $@
+
+dec.safety:
+	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_avx2_dec -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_avx2_dec>shared_secret,ciphertext,secret_key;' jkem.jazz 2>&1 | tee $@
+
 .PHONY: ct clean
 
 ct:
