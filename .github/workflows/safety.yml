@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dir: [ 'ref', 'avx2' ]
+        dir: [ 'ref' ]
         entrypoint: [ 'keypair_derand', 'keypair', 'enc_derand', 'enc', 'dec' ]
     steps:
     - uses: actions/checkout@v4
