@@ -474,9 +474,11 @@ fn _poly_invntt(reg ptr u16[MLKEM_N] rp) -> reg ptr u16[MLKEM_N]
   zetasctr = 0;
 
   len = 2;
+  #[bounded]
   while (len <= 128)
   {
     start = 0;
+    #[bounded]
     while (start < 256)
     {
       zeta = zetasp[(int)zetasctr];
@@ -484,6 +486,7 @@ fn _poly_invntt(reg ptr u16[MLKEM_N] rp) -> reg ptr u16[MLKEM_N]
 
       j = start;
       cmp = start; cmp += len;
+      #[bounded]
       while (j < cmp)
       {
         t = rp[(int)j];
@@ -533,15 +536,18 @@ fn _poly_ntt(reg ptr u16[MLKEM_N] rp) -> reg ptr u16[MLKEM_N]
   zetasp = jzetas;
   zetasctr = 0;
   len = 128;
+  #[bounded]
   while (len >= 2)
   {
     start = 0;
+    #[bounded]
     while (start < 256)
     {
       zetasctr += 1;
       zeta = zetasp[(int)zetasctr];
       j = start;
       cmp = start; cmp += len;
+      #[bounded]
       while (j < cmp)
       {
         s = rp[(int)j];
@@ -592,6 +598,7 @@ fn _poly_tobytes(reg u64 rp, reg ptr u16[MLKEM_N] a) -> reg ptr u16[MLKEM_N]
 
   i = 0;
   j = 0;
+  #[bounded]
   while (i < MLKEM_N)
   {
     t0 = a[(int)i]; 
