@@ -36,6 +36,8 @@ jobs:
         opam pin alt-ergo 2.5.2
         opam pin add -n easycrypt easycrypt
         opam install --deps-only easycrypt
+    - name: Install Jasmin
+      run: opam install jasmin
     - name: Compile & Install EasyCrypt
       run: opam install easycrypt
     - name: Detect SMT provers
