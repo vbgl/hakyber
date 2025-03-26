@@ -44,6 +44,7 @@ in
 
 mkShell ({
   JASMINC = "${jasmin-compiler.bin}/bin/jasminc";
+  JASMINCT = "${jasmin-compiler.bin}/bin/jasmin-ct";
   JASMINPATH="Keccak=${formosa-keccak}/src/amd64";
 } // lib.optionalAttrs full {
   packages = [
