@@ -8,6 +8,15 @@
 
 with pkgs;
 
+let formosa-keccak =
+  fetchFromGitHub {
+    owner = "vbgl";
+    repo = "formosa-keccak";
+    rev = "0d82714f39d5024ff07b117a80c858d6b2070c16";
+    hash = "sha256-/j1jQS8kak4QBOxCVQHa1wVFDXdmqww63/zIc1L8qbU=";
+  }
+; in
+
 let
   oc = ocaml-ng.ocamlPackages_4_14;
   why = why3.override {
@@ -35,6 +44,7 @@ in
 
 mkShell ({
   JASMINC = "${jasmin-compiler.bin}/bin/jasminc";
+  JASMINPATH="Keccak=${formosa-keccak}/src/amd64";
 } // lib.optionalAttrs full {
   packages = [
     ec
