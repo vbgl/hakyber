@@ -36,6 +36,9 @@ test/speed_kem: test/speed_kem.c $(JINC) $(SOURCES) jkem.s
 %.s: %.jazz
 	$(JASMINC) -o $@ $(JFLAGS) $^ 
 
+gen_matrix.safety:
+	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_ref_gen_matrix -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_ref_gen_matrix>;' gen_matrix.jazz 2>&1 | tee $@
+
 keypair_derand.safety:
 	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_ref_keypair_derand -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_ref_keypair_derand>public_key,secret_key,fixedrand;' jkem.jazz 2>&1 | tee $@
 
@@ -64,6 +67,7 @@ clean:
 	-rm -f jkem.o
 	-rm -f test/test_kem
 	-rm -f test/speed_kem
+	$(RM) *.safety
 ifeq ($(OS),Darwin)
 	-rm -rf test/*.dSYM
 endif
