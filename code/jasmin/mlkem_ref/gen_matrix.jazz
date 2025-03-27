@@ -5,6 +5,6 @@ fn jade_kem_mlkem_mlkem768_amd64_ref_gen_matrix(reg ptr u16[MLKEM_K*MLKEM_VECN] 
   stack u16[MLKEM_K*MLKEM_VECN] result;
   stack u8[MLKEM_SYMBYTES] seed = #copy(in);
   result = __gen_matrix(seed, transposed);
-  out = #copy(result);
+  out = #copy_64(result);
   return out;
 }
