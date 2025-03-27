@@ -17,6 +17,17 @@ let formosa-keccak =
   }
 ; in
 
+let jasmin = jasmin-compiler.overrideAttrs (o: {
+  src = fetchurl {
+    url = "https://gitlab.com/jasmin-lang/jasmin/-/jobs/9546474816/artifacts/raw/compiler/jasmin-compiler-842f308b.tgz";
+    hash = "sha256-0XUIxT1sV1uxNbNVj1moXX9BkhvLUpDXoapgNP6GmsY=";
+  };
+  outputs = [ "bin" "out" ];
+  installPhase = ''
+    dune install --prefix=$bin --libdir=$out/lib/ocaml/${ocamlPackages.ocaml.version}/site-lib
+  '';
+}); in
+
 let
   oc = ocaml-ng.ocamlPackages_4_14;
   why = why3.override {
@@ -43,8 +54,8 @@ let
 in
 
 mkShell ({
-  JASMINC = "${jasmin-compiler.bin}/bin/jasminc";
-  JASMINCT = "${jasmin-compiler.bin}/bin/jasmin-ct";
+  JASMINC = "${jasmin.bin}/bin/jasminc";
+  JASMINCT = "${jasmin.bin}/bin/jasmin-ct";
   JASMINPATH="Keccak=${formosa-keccak}/src/amd64";
 } // lib.optionalAttrs full {
   packages = [
@@ -54,5 +65,5 @@ mkShell ({
     z3
   ];
 
-  EC_RDIRS = "Jasmin:${jasmin-compiler.lib}/lib/jasmin/easycrypt";
+  EC_RDIRS = "Jasmin:${jasmin.lib}/lib/jasmin/easycrypt";
 })
