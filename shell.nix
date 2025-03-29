@@ -19,8 +19,8 @@ let formosa-keccak =
 
 let jasmin = jasmin-compiler.overrideAttrs (o: {
   src = fetchurl {
-    url = "https://gitlab.com/jasmin-lang/jasmin/-/jobs/9546474816/artifacts/raw/compiler/jasmin-compiler-842f308b.tgz";
-    hash = "sha256-0XUIxT1sV1uxNbNVj1moXX9BkhvLUpDXoapgNP6GmsY=";
+    url = "https://gitlab.com/jasmin-lang/jasmin/-/jobs/9524736591/artifacts/raw/compiler/jasmin-compiler-afe92e0e.tgz";
+    hash = "sha256-Jw3FVtE6a/LDczzjvqS5X7tY90COQQRmHzM9sYhg/gw=";
   };
   outputs = [ "bin" "out" ];
   installPhase = ''
