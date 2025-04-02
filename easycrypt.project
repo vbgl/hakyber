@@ -6,9 +6,6 @@ provers = CVC4@1.8
 provers = Z3@4.8
 
 rdirs = proof
-rdirs = Jasmin:jasmin/eclib
-idirs = Keccak:formosa-keccak/proof/amd64/ref
-idirs = Keccak:formosa-keccak/proof/amd64/avx2
 idirs = JazzEC:crypto-specs/arrays
 idirs = JazzEC:formosa-keccak/proof/amd64/extracted
 idirs = JazzEC:code/jasmin/mlkem_ref/extraction
