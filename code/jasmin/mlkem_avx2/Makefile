@@ -35,6 +35,8 @@ test/speed_kem: test/speed_kem.c $(JINC) $(SOURCES) jkem.s
 %.s: %.jazz
 	$(JASMINC) -o $@ $(JFLAGS) $^ 
 
+gen_matrix.safety:
+	$(JASMINC) -timings -slice _gen_matrix_avx2 -checksafety -safetyparam '_gen_matrix_avx2>;' indcpa.jinc 2>&1 | tee $@
 
 keypair_derand.safety:
 	$(JASMINC) -timings -slice jade_kem_mlkem_mlkem768_amd64_avx2_keypair_derand -checksafety -safetyparam 'jade_kem_mlkem_mlkem768_amd64_avx2_keypair_derand>public_key,secret_key,coins;' jkem.jazz 2>&1 | tee $@
