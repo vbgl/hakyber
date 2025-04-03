@@ -10,7 +10,7 @@ jobs:
   safety:
     name: J
     runs-on: self-hosted
-    timeout-minutes: 1800
+    timeout-minutes: 3600
     strategy:
       fail-fast: false
       matrix:
