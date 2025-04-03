@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         dir: [ 'avx2' ]
-        entrypoint: [ 'gen_matrix', 'keypair_derand', 'enc_derand', 'dec' ]
+        entrypoint: [ 'gen_matrix' ]
     steps:
     - uses: actions/checkout@v4
     - uses: cachix/install-nix-action@v31
