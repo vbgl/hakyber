@@ -6,8 +6,8 @@
 , full ? true
 , jasmin-compiler ? pkgs.jasmin-compiler.overrideAttrs (o: {
     src = pkgs.fetchurl {
-      url = "https://gitlab.com/jasmin-lang/jasmin-compiler/-/archive/06ce46670f2199fea2a1bd50384fc4bede759d73/jasmin-compiler-06ce46670f2199fea2a1bd50384fc4bede759d73.tar.bz2";
-      hash = "sha256-yP1lcb+cEG2/Nl5w6rNl20WlN+A12Xc25N7G1BBK/2Y=";
+      url = "https://gitlab.com/jasmin-lang/jasmin-compiler/-/archive/4398f0ca07c1c4a5f647f9d0b5ec048de5d95212/jasmin-compiler.tar.bz2";
+      hash = "sha256-DwGrFSGxPYrjPdI3pg0eHVr31Kvs1Cg1QCx6+KcxaF4=";
     };
   })
 }:
