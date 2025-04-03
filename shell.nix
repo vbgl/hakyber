@@ -27,8 +27,8 @@ let formosa-keccak =
   fetchFromGitHub {
     owner = "vbgl";
     repo = "formosa-keccak";
-    rev = "7c06bdb1e65819f00bca5773421677a0cb4082c4";
-    hash = "sha256-FFJPRDrtwhX6VdBzTesE0wNG/KcDfuqgspJRJhfg1Dg=";
+    rev = "4a6cc439a0038c96dd09bca565cbd879941ac745";
+    hash = "sha256-ik+kVWArtz8f99LWWBhuHmhPMAyYfIqbzq0DWPVCzIk=";
   }
 ; in
 

@@ -3253,7 +3253,7 @@ module M(SC:Syscall_t) = {
     r8 <- rOL8;
     r56 <- rOL56;
     c <- (W64.of_int 0);
-    while ((c \ult (W64.of_int 24))) {
+    while ((c \ult (W64.of_int (24 - 1)))) {
       rc <- (VPBROADCAST_4u64 rC.[(W64.to_uint c)]);
       e <@ _keccakf1600_4x_round (e, a, rc, r8, r56);
       a_s <- a;
