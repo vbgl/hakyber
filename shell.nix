@@ -25,10 +25,10 @@ let crypto-specs =
 
 let formosa-keccak =
   fetchFromGitHub {
-    owner = "formosa-crypto";
+    owner = "vbgl";
     repo = "formosa-keccak";
-    rev = "a5b53270b7976d340a5c6baf0db9246f8c35279b";
-    hash = "sha256-spMou9uAeaegMzjSB5843BkvzO/8hyTRqqNzN42yd7E=";
+    rev = "7c06bdb1e65819f00bca5773421677a0cb4082c4";
+    hash = "sha256-FFJPRDrtwhX6VdBzTesE0wNG/KcDfuqgspJRJhfg1Dg=";
   }
 ; in
 
