@@ -2857,7 +2857,8 @@ module M = {
     offset <- (offset + (W64.of_int dELTA));
     dELTA <- 0;
     if ((8 <= lEN)) {
-      while ((at \ult (W64.of_int ((4 * (aT %/ 8)) + (16 * (lEN %/ 32)))))) {
+      while ((at \ult
+             (W64.of_int (((4 * (aT %/ 8)) + (16 * (lEN %/ 32))) - 15)))) {
         t256_0 <-
         (get256_direct (WArray1.init8 (fun i => buf0.[i]))
         (W64.to_uint offset));
@@ -2911,7 +2912,8 @@ module M = {
         (W64.to_uint (((W64.of_int 8) * at) + (W64.of_int 96))) t256_3)));
         at <- (at + (W64.of_int 16));
       }
-      while ((at \ult (W64.of_int ((4 * (aT %/ 8)) + (4 * (lEN %/ 8)))))) {
+      while ((at \ult
+             (W64.of_int (((4 * (aT %/ 8)) + (4 * (lEN %/ 8))) - 3)))) {
         t0 <-
         (get64_direct (WArray1.init8 (fun i => buf0.[i]))
         (W64.to_uint offset));
@@ -3646,7 +3648,8 @@ module M = {
     offset <- (offset + (W64.of_int dELTA));
     dELTA <- 0;
     if ((8 <= lEN)) {
-      while ((at \ult (W64.of_int ((4 * (aT %/ 8)) + (16 * (lEN %/ 32)))))) {
+      while ((at \ult
+             (W64.of_int (((4 * (aT %/ 8)) + (16 * (lEN %/ 32))) - 15)))) {
         t256_0 <-
         (get256_direct (WArray2.init8 (fun i => buf0.[i]))
         (W64.to_uint offset));
@@ -3700,7 +3703,8 @@ module M = {
         (W64.to_uint (((W64.of_int 8) * at) + (W64.of_int 96))) t256_3)));
         at <- (at + (W64.of_int 16));
       }
-      while ((at \ult (W64.of_int ((4 * (aT %/ 8)) + (4 * (lEN %/ 8)))))) {
+      while ((at \ult
+             (W64.of_int (((4 * (aT %/ 8)) + (4 * (lEN %/ 8))) - 3)))) {
         t0 <-
         (get64_direct (WArray2.init8 (fun i => buf0.[i]))
         (W64.to_uint offset));
@@ -5713,7 +5717,7 @@ module M = {
       (W64.to_uint offset) x3)));
       offset <- (offset + (W64.of_int 32));
     }
-    while ((i \slt (W64.of_int (8 * (lEN %/ 8))))) {
+    while ((i \slt (W64.of_int ((8 * (lEN %/ 8)) - 7)))) {
       t0 <-
       (get64_direct (WArray800.init256 (fun i_0 => st.[i_0]))
       (W64.to_uint (((W64.of_int 4) * i) + (W64.of_int (0 * 8)))));
@@ -6203,7 +6207,7 @@ module M = {
       (W64.to_uint offset) x3)));
       offset <- (offset + (W64.of_int 32));
     }
-    while ((i \slt (W64.of_int (8 * (lEN %/ 8))))) {
+    while ((i \slt (W64.of_int ((8 * (lEN %/ 8)) - 7)))) {
       t0 <-
       (get64_direct (WArray800.init256 (fun i_0 => st.[i_0]))
       (W64.to_uint (((W64.of_int 4) * i) + (W64.of_int (0 * 8)))));
