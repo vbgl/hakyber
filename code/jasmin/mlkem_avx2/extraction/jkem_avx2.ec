@@ -4038,7 +4038,7 @@ module M(SC:Syscall_t) = {
     if ((32 <= lEN)) {
       offset <- (offset + (W64.of_int dELTA));
       dELTA <- 0;
-      while ((at \ult (W64.of_int ((aT %/ 8) + (4 * (lEN %/ 32)))))) {
+      while ((at \ult (W64.of_int (((aT %/ 8) + (4 * (lEN %/ 32))) - 3)))) {
         t256 <-
         (get256_direct (WArray2.init8 (fun i => buf.[i]))
         (W64.to_uint offset));
@@ -4977,7 +4977,7 @@ module M(SC:Syscall_t) = {
     if ((32 <= lEN)) {
       offset <- (offset + (W64.of_int dELTA));
       dELTA <- 0;
-      while ((at \ult (W64.of_int ((aT %/ 8) + (4 * (lEN %/ 32)))))) {
+      while ((at \ult (W64.of_int (((aT %/ 8) + (4 * (lEN %/ 32))) - 3)))) {
         t256 <-
         (get256_direct (WArray32.init8 (fun i => buf.[i]))
         (W64.to_uint offset));
@@ -5416,7 +5416,8 @@ module M(SC:Syscall_t) = {
       
     }
     if ((8 <= lEN)) {
-      while ((at \ult (W64.of_int ((32 * (aT %/ 8)) + (32 * (lEN %/ 8)))))) {
+      while ((at \ult
+             (W64.of_int (((32 * (aT %/ 8)) + (32 * (lEN %/ 8))) - 31)))) {
         t256 <-
         (VPBROADCAST_4u64
         (get64_direct (WArray32.init8 (fun i => buf.[i]))
@@ -6390,7 +6391,7 @@ module M(SC:Syscall_t) = {
     var  _6:int;
     var  _7:int;
     i <- (W64.of_int 0);
-    while ((i \slt (W64.of_int (32 * (lEN %/ 32))))) {
+    while ((i \slt (W64.of_int ((32 * (lEN %/ 32)) - 31)))) {
       x0 <-
       (get256_direct (WArray800.init256 (fun i_0 => st.[i_0]))
       (W64.to_uint (((W64.of_int 4) * i) + (W64.of_int (0 * 32)))));
@@ -6880,7 +6881,7 @@ module M(SC:Syscall_t) = {
     var  _6:int;
     var  _7:int;
     i <- (W64.of_int 0);
-    while ((i \slt (W64.of_int (32 * (lEN %/ 32))))) {
+    while ((i \slt (W64.of_int ((32 * (lEN %/ 32)) - 31)))) {
       x0 <-
       (get256_direct (WArray800.init256 (fun i_0 => st.[i_0]))
       (W64.to_uint (((W64.of_int 4) * i) + (W64.of_int (0 * 32)))));
