@@ -1,0 +1,17 @@
+require "params.jinc"
+require "../../common/avx2/shuffle.jinc"
+require "gen_matrix.jinc"
+
+export fn gen_matrix_avx2
+( reg mut ptr u16[MLKEM_K * MLKEM_K * MLKEM_N] matrix
+, reg const ptr u8[32] rho
+, reg u64 transposed
+) -> reg ptr u16[MLKEM_K * MLKEM_K * MLKEM_N]
+{
+  // Enforce small range
+  transposed &= 1;
+
+  matrix = _gen_matrix_avx2(matrix, rho, transposed);
+
+  return matrix;
+}

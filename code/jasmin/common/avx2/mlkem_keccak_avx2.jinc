@@ -229,6 +229,7 @@ fn _shake128x4_absorb_A32_A2
 
 /* SHAKE-128 squeeze the next 504 bytes and keep the full state
    at the end so it can be resumed */
+#[Safety::contract]
 fn _shake128_squeeze3blocks
 ( reg mut ptr u8[ABUFLEN::ASIZE] buf
 , reg u256[7] st
@@ -247,6 +248,7 @@ fn _shake128_squeeze3blocks
 
 /* SHAKE-128 squeeze the next 168 bytes and keep the full state
    at the end so it can be resumed */
+#[Safety::contract]
 fn _shake128_next_state
 ( reg mut ptr u8[ABUFLEN::ASIZE] buf
 ) -> reg ptr u8[ABUFLEN::ASIZE] /* buf */

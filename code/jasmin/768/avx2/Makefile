@@ -35,6 +35,11 @@ test/speed_kem: test/speed_kem.c $(JINC) $(SOURCES) jkem.s
 %.s: %.jazz
 	$(JASMINC) -o $@ $(JFLAGS) $^ 
 
+gen_matrix.safety:
+	$(JASMINC) -timings -checksafety \
+		-slice gen_matrix_avx2 \
+		-safetyparam 'gen_matrix_avx2>;|_keccakf1600_avx2>;|_keccakf1600_avx2x4>;|_shake128_squeeze3blocks>;|__gen_matrix_fill_polynomial>;|_shake128_next_state>;' \
+		gen_matrix.jazz 2>&1 | tee $@
 
 .PHONY: ct clean
 

@@ -10,11 +10,9 @@ with pkgs;
 
 let jasmin =
   jasmin-compiler.overrideAttrs (o: {
-    src = fetchFromGitLab {
-      owner = "jasmin-lang";
-      repo = "jasmin-compiler";
-      rev = "e1986c87bc53757904bb51c98582887243ff3914";
-      hash = "sha256-6/zRkWnkb08GmgNgXwcXXlRJLpQVPr9Du6tEyydhtXw=";
+    src = fetchzip {
+      url = "https://gitlab.com/jasmin-lang/jasmin/-/jobs/10176488288/artifacts/raw/compiler/jasmin-compiler-20edeb43.tgz";
+      hash = "sha256-gFvswymQ21B/QfvCToQeDuAjxeV4/ezGhQYSh+6E3pY=";
     };
   })
 ; in

@@ -49,6 +49,7 @@ inline fn __gen_matrix_buf_rejection_filter48
   reg u256 shuffle_0 shuffle_1 shuffle_t;
   reg u128 shuffle_0_1 shuffle_1_1;
   reg u64 good t0_0 t0_1 t1_0 t1_1;
+  reg u64 t0_0c t0_1c t1_0c t1_1c;
 
   // loads 24 bytes (while touching 32 bytes of memory) into f0 and another
   // 24 bytes into f1 while doing some rearrangements:
@@ -134,30 +135,30 @@ inline fn __gen_matrix_buf_rejection_filter48
   t0_0 &= 0xFF; // g0[0..7]
 
   shuffle_0 = (256u) #VMOV(sst[u64 t0_0]);
-  ?{}, t0_0 = #POPCNT_64(t0_0);
-  t0_0 += counter;
+  ?{}, t0_0c = #POPCNT_64(t0_0);
+  t0_0c += counter;
 
   t0_1 = good;
   t0_1 >>= 16;
   t0_1 &= 0xFF; // g0[8..15]
   shuffle_0_1 = #VMOV(sst[u64 t0_1]);
-  ?{}, t0_1 = #POPCNT_64(t0_1);
-  t0_1 += t0_0;
+  ?{}, t0_1c = #POPCNT_64(t0_1);
+  t0_1c += t0_0c;
 
   // g1
   t1_0 = good;
   t1_0 >>= 8;
   t1_0 &= 0xFF; // g1[0..7]
   shuffle_1 = (256u) #VMOV(sst[u64 t1_0]);
-  ?{}, t1_0 = #POPCNT_64(t1_0);
-  t1_0 += t0_1;
+  ?{}, t1_0c = #POPCNT_64(t1_0);
+  t1_0c += t0_1c;
 
   t1_1 = good;
   t1_1 >>= 24;
   t1_1 &= 0xFF; // g1[8..15]
   shuffle_1_1 = #VMOV(sst[u64 t1_1]);
-  ?{}, t1_1 = #POPCNT_64(t1_1);
-  t1_1 += t1_0;
+  ?{}, t1_1c = #POPCNT_64(t1_1);
+  t1_1c += t1_0c;
 
   //
 
@@ -178,11 +179,11 @@ inline fn __gen_matrix_buf_rejection_filter48
   //
 
   pol.[u128 2*counter] = (128u)f0;
-  pol.[u128 2*t0_0] = #VEXTRACTI128(f0, 1);
-  pol.[u128 2*t0_1] = (128u)f1;
-  pol.[u128 2*t1_0] = #VEXTRACTI128(f1, 1);
+  pol.[u128 2*t0_0c] = #VEXTRACTI128(f0, 1);
+  pol.[u128 2*t0_1c] = (128u)f1;
+  pol.[u128 2*t1_0c] = #VEXTRACTI128(f1, 1);
 
-  counter = t1_1;
+  counter = t1_1c;
 
   return pol, counter;
 }
@@ -317,6 +318,7 @@ fn _gen_matrix_buf_rejection
   reg ptr u8[2048] sst;
   reg u256 load_shuffle mask bounds ones;
   #msf reg u64 ms;
+  stack u64 saved_buf_offset;
 
   ms = #init_msf();
 
@@ -326,29 +328,43 @@ fn _gen_matrix_buf_rejection
   ones = sample_ones;
   sst = sample_shuffle_table;
 
+  saved_buf_offset = buf_offset;
   buf_offset = buf_offset;
 
   while
-    { condition_loop = comp_u64_l_int_and_u64_l_int(buf_offset, 3*168-48+1, counter, MLKEM_N-32+1);
+    { condition_loop = buf_offset <u 3 * 168 - 48 + 1;
     }
   ( condition_loop )
     {
     ms = #update_msf(condition_loop, ms);
-() = #spill(buf_offset);
-    pol, counter = __gen_matrix_buf_rejection_filter48(pol, counter, buf, buf_offset, load_shuffle, mask, bounds, sst, ones, ms);
-() = #unspill(buf_offset);
-    buf_offset += 48;
+    saved_buf_offset = buf_offset;
+    condition_loop = counter <u MLKEM_N - 32 + 1;
+    if condition_loop {
+      pol, counter = __gen_matrix_buf_rejection_filter48(pol, counter, buf, buf_offset, load_shuffle, mask, bounds, sst, ones, ms);
+      saved_buf_offset += 48;
+      buf_offset = saved_buf_offset;
+    } else {
+      ms = #update_msf(!condition_loop, ms);
+      buf_offset = 3 * 168;
+    }
     }
   ms = #update_msf(!condition_loop, ms);
 
-  while { condition_loop = comp_u64_l_int_and_u64_l_int(buf_offset, 3*168-24+1, counter, MLKEM_N); }
+  buf_offset = saved_buf_offset;
+
+  while { condition_loop = buf_offset <u 3 * 168 - 24 + 1; }
         ( condition_loop )
   {
     ms = #update_msf(condition_loop, ms);
-() = #spill(buf_offset);
-    pol, counter, ms = __gen_matrix_buf_rejection_filter24(pol, counter, buf, buf_offset, load_shuffle, mask, bounds, sst, ones, ms);
-() = #unspill(buf_offset);
-    buf_offset += 24;
+    condition_loop = counter <u MLKEM_N;
+    if condition_loop {
+      ms = #update_msf(condition_loop, ms);
+      pol, counter, ms = __gen_matrix_buf_rejection_filter24(pol, counter, buf, buf_offset, load_shuffle, mask, bounds, sst, ones, ms);
+      buf_offset += 24;
+    } else {
+      ms = #update_msf(!condition_loop, ms);
+      buf_offset = 3 * 168;
+    }
   }
 
   return pol, counter;
@@ -374,6 +390,7 @@ inline fn gen_matrix_get_indexes(
   return t;
 }
 
+#[Safety::contract]
 fn __gen_matrix_fill_polynomial
 ( reg mut ptr u16[MLKEM_N] pol
 , reg mut ptr u8[BUF_size] buf
@@ -385,6 +402,7 @@ fn __gen_matrix_fill_polynomial
   counter = 0;
   pol, counter = _gen_matrix_buf_rejection(pol, counter, buf, buf_offset);
   buf_offset = 2*168;
+  #[no_termination_check]
   while (counter < MLKEM_N) {
     buf = _shake128_next_state(buf);
     pol, counter = _gen_matrix_buf_rejection(pol, counter, buf, buf_offset);
