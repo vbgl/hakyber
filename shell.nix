@@ -11,8 +11,8 @@ with pkgs;
 let jasmin =
   jasmin-compiler.overrideAttrs (o: {
     src = fetchzip {
-      url = "https://gitlab.com/jasmin-lang/jasmin/-/jobs/10233556203/artifacts/raw/compiler/jasmin-compiler-9da4c02a.tgz";
-      hash = "sha256-5jl74kHoduwJpqvygg/KF8zUiLhXXUCUs6VGeLq4ciQ=";
+      url = "https://gitlab.com/jasmin-lang/jasmin/-/jobs/10259589136/artifacts/raw/compiler/jasmin-compiler-e7098722.tgz";
+      hash = "sha256-zb3kRu152oD3zzkugbdYv8HAlEtbMvCNg3afxBb8GdQ=";
     };
   })
 ; in
