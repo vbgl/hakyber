@@ -369,6 +369,7 @@ inline fn gen_matrix_get_indexes(
   return t;
 }
 
+#[Safety::contract]
 fn __gen_matrix_fill_polynomial
 ( reg mut ptr u16[MLKEM_N] pol
 , reg mut ptr u8[BUF_size] buf
