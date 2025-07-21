@@ -37,7 +37,7 @@ test/speed_kem: test/speed_kem.c $(JINC) $(SOURCES) jkem.s
 keypair.safety:
 	$(JASMINC) -timings -checksafety \
 		-slice jade_kem_mlkem_mlkem1024_amd64_avx2_keypair_derand \
-		-safetyparam 'jade_kem_mlkem_mlkem1024_amd64_avx2_keypair_derand>;|_keccakf1600_avx2x4>;|_sha3_512A_A33>;|_shake128_squeeze3blocks>;|__gen_matrix_fill_polynomial>;' \
+		-safetyparam 'jade_kem_mlkem_mlkem1024_amd64_avx2_keypair_derand>;|_keccakf1600_avx2x4>;|_sha3_512A_A33>;|_shake128_squeeze3blocks>;|__gen_matrix_fill_polynomial>;|_poly_frommont>;' \
 		jkem.jazz 2>&1 | tee $@
 
 .PHONY: ct clean
