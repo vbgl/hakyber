@@ -34,6 +34,11 @@ test/speed_kem: test/speed_kem.c $(JINC) $(SOURCES) jkem.s
 %.s: %.jazz
 	$(JASMINC) -o $@ $(JFLAGS) $^ 
 
+keypair.safety:
+	$(JASMINC) -timings -checksafety \
+		-slice jade_kem_mlkem_mlkem1024_amd64_avx2_keypair_derand \
+		-safetyparam 'jade_kem_mlkem_mlkem1024_amd64_avx2_keypair_derand>;|_sha3_512A_A33>;|_shake128_squeeze3blocks>;' \
+		jkem.jazz 2>&1 | tee $@
 
 .PHONY: ct clean
 
