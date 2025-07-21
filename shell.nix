@@ -12,8 +12,8 @@ let jasmin =
   jasmin-compiler.overrideAttrs (o: {
     version = "2025.06.0+safety-contracts";
     src = fetchzip {
-      url = "https://gitlab.com/jasmin-lang/jasmin/-/jobs/10749127955/artifacts/raw/compiler/jasmin-compiler-9a69b96e.tgz";
-      hash = "sha256-6kziil/ZkMJlEDhcFJ/glC77xIuoNswzT6pBSUqF6s0=";
+      url = "https://gitlab.com/jasmin-lang/jasmin/-/jobs/10751175325/artifacts/raw/compiler/jasmin-compiler-7c04930c.tgz";
+      hash = "sha256-3d9uhsHDd/HhzbfxRT4uamYQasCJwuFAV/nyXvVrl8A=";
     };
   })
 ; in
