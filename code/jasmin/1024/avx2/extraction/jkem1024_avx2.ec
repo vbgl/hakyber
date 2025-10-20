@@ -2860,7 +2860,6 @@ module M = {
         dELTA, lEN, tRAILB);
         t64 <- (t64 `<<` (W8.of_int (8 * lO)));
         pst.[(W64.to_uint at)] <- (pst.[(W64.to_uint at)] `^` t64);
-        lO <- 0;
         aT <- 0;
         lEN <- 0;
       } else {
@@ -2926,7 +2925,6 @@ module M = {
       (WArray200.get64
       (WArray200.set64_direct (WArray200.init64 (fun i => pst.[i]))
       (W64.to_uint ((W64.of_int 8) * at)) t64)));
-      at <- (at + (W64.of_int 1));
       lEN <- (lEN - 8);
     } else {
       
@@ -3129,7 +3127,6 @@ module M = {
         (WArray800.get256
         (WArray800.set64 (WArray800.init256 (fun i => st.[i]))
         (W64.to_uint (at + (W64.of_int 3))) t3)));
-        lO <- 0;
         aT <- 0;
         lEN <- 0;
         tRAILB <- 0;
@@ -3331,7 +3328,6 @@ module M = {
       offset <- (offset + (W64.of_int dELTA));
       if ((tRAILB <> 0)) {
         aLL <- (aLL + 1);
-        tRAILB <- 0;
       } else {
         
       }
@@ -3402,7 +3398,6 @@ module M = {
         buf1, buf2, buf3, offset, (rATE8 - aT), 0);
         lEN <- (lEN - (rATE8 - aT));
         st <@ _keccakf1600_avx2x4 (st);
-        aT <- 0;
       } else {
         
       }
@@ -3600,7 +3595,6 @@ module M = {
         (WArray800.get256
         (WArray800.set64 (WArray800.init256 (fun i => st.[i]))
         (W64.to_uint (at + (W64.of_int 3))) t3)));
-        lO <- 0;
         aT <- 0;
         lEN <- 0;
         tRAILB <- 0;
@@ -3802,7 +3796,6 @@ module M = {
       offset <- (offset + (W64.of_int dELTA));
       if ((tRAILB <> 0)) {
         aLL <- (aLL + 1);
-        tRAILB <- 0;
       } else {
         
       }
@@ -3873,7 +3866,6 @@ module M = {
         buf1, buf2, buf3, offset, (rATE8 - aT), 0);
         lEN <- (lEN - (rATE8 - aT));
         st <@ _keccakf1600_avx2x4 (st);
-        aT <- 0;
       } else {
         
       }
@@ -4270,7 +4262,6 @@ module M = {
         dELTA, lEN, tRAILB);
         t64 <- (t64 `<<` (W8.of_int (8 * lO)));
         pst.[(W64.to_uint at)] <- (pst.[(W64.to_uint at)] `^` t64);
-        lO <- 0;
         aT <- 0;
         lEN <- 0;
       } else {
@@ -4336,7 +4327,6 @@ module M = {
       (WArray200.get64
       (WArray200.set64_direct (WArray200.init64 (fun i => pst.[i]))
       (W64.to_uint ((W64.of_int 8) * at)) t64)));
-      at <- (at + (W64.of_int 1));
       lEN <- (lEN - 8);
     } else {
       
@@ -4700,7 +4690,6 @@ module M = {
         (WArray800.get256
         (WArray800.set256_direct (WArray800.init256 (fun i => st.[i]))
         (W64.to_uint at) t256)));
-        lO <- 0;
         aT <- 0;
         lEN <- 0;
       } else {
@@ -4802,7 +4791,6 @@ module M = {
         aT, buf, offset, (rATE8 - aT), 0);
         lEN <- (lEN - (rATE8 - aT));
         st <@ _keccakf1600_avx2x4 (st);
-        aT <- 0;
       } else {
         
       }
@@ -5023,10 +5011,8 @@ module M = {
   proc a33____absorb_array_avx2 (st:W256.t Array7.t, buf:W8.t Array33.t,
                                  offset:W64.t, lEN:int, rATE8:int, tRAILB:int) : 
   W256.t Array7.t * W64.t = {
-    var aLL:int;
     var iTERS:int;
     var i:W64.t;
-    aLL <- (lEN + ((tRAILB <> 0) ? 1 : 0));
     iTERS <- (lEN %/ rATE8);
     if ((0 < iTERS)) {
       i <- (W64.of_int 0);
@@ -5370,10 +5356,8 @@ module M = {
   proc a64____absorb_array_avx2 (st:W256.t Array7.t, buf:W8.t Array64.t,
                                  offset:W64.t, lEN:int, rATE8:int, tRAILB:int) : 
   W256.t Array7.t * W64.t = {
-    var aLL:int;
     var iTERS:int;
     var i:W64.t;
-    aLL <- (lEN + ((tRAILB <> 0) ? 1 : 0));
     iTERS <- (lEN %/ rATE8);
     if ((0 < iTERS)) {
       i <- (W64.of_int 0);
@@ -6348,10 +6332,8 @@ module M = {
   proc a1568____absorb_array_avx2 (st:W256.t Array7.t, buf:W8.t Array1568.t,
                                    offset:W64.t, lEN:int, rATE8:int,
                                    tRAILB:int) : W256.t Array7.t * W64.t = {
-    var aLL:int;
     var iTERS:int;
     var i:W64.t;
-    aLL <- (lEN + ((tRAILB <> 0) ? 1 : 0));
     iTERS <- (lEN %/ rATE8);
     if ((0 < iTERS)) {
       i <- (W64.of_int 0);
@@ -6573,10 +6555,8 @@ module M = {
   proc a1600____absorb_array_avx2 (st:W256.t Array7.t, buf:W8.t Array1600.t,
                                    offset:W64.t, lEN:int, rATE8:int,
                                    tRAILB:int) : W256.t Array7.t * W64.t = {
-    var aLL:int;
     var iTERS:int;
     var i:W64.t;
-    aLL <- (lEN + ((tRAILB <> 0) ? 1 : 0));
     iTERS <- (lEN %/ rATE8);
     if ((0 < iTERS)) {
       i <- (W64.of_int 0);

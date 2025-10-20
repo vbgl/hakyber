@@ -32,8 +32,8 @@ let formosa-keccak =
   fetchFromGitHub {
     owner = "formosa-crypto";
     repo = "formosa-keccak";
-    rev = "40118f698e3fb3c39f1763aee76da794a19fdcf3";
-    hash = "sha256-tZnzWfbFKqFnarhlAHmoDEsxVRYQy7xk4EE6AZOf3Qo=";
+    rev = "4ccaaf8c4131e3d939d974a61325c8a06124d7e3";
+    hash = "sha256-IDScLI7M3T1zIBnHGM9svGqIvHBm70lnGpa1/dUNc0M=";
   }
 ; in
 
