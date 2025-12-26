@@ -56,8 +56,12 @@ op k : { int | 2 < k } as gt2_k.
 
 op R = 2^k.
 
-lemma dvd4R : 4 %| R
-  by have -> : (4 = 2^2); smt(expr2 dvdz_exp2l gt2_k). 
+lemma dvd4R : 4 %| R.
+proof.
+  have -> : 4 = 2^2 by rewrite expr2.
+  apply: dvdz_exp2l.
+  smt(gt2_k).
+qed.
 
 hint exact : dvd4R.
 
@@ -185,7 +189,7 @@ case (0 <= a).
   have -> /= : !(2 ^ k ^ 2 %/ 2 <= a * (2 ^ bits %/ SignedReductions.q + 1)).
   + rewrite ltr_geF; last by done.
     rewrite expr2 mulrC div_mulr; 1: by rewrite -{1}(expr1 2); apply dvdz_exp2l; smt(gt2_k).
-    by smt(expr2 gtr0_norm ltr_pmul).  
+    apply: ltr_pmul; smt().
   rewrite !(modz_small ((a - a * (2 ^ bits %/ SignedReductions.q + 1) %/ 2 ^ bits * SignedReductions.q))); 
     1: by smt(). 
   split; 1: by smt(). 
@@ -211,8 +215,9 @@ have -> /=: 2 ^ k ^ 2 %/ 2 <= 2 ^ k ^ 2 - 1 - ((- a * (2 ^ bits %/ SignedReducti
   move => *. 
   rewrite !(modz_small _ (2^k)) => //; 1: smt(). 
   case (2 ^ k %/ 2 <=  (-d) - (2 ^ k ^ 2 - 1 - ((- a * (2 ^ bits %/ SignedReductions.q + 1)) - 1) - 2 ^ k ^ 2) %/ 2 ^ bits * SignedReductions.q); 1: by smt().
-  by move : (modzMDr (-((2 ^ k ^ 2 - 1 - ((- a * (2 ^ bits %/ SignedReductions.q + 1)) - 1) - 2 ^ k ^ 2) %/ 2 ^ bits)) (-d) q) => /=; smt(modNz). 
-qed. 
+  move : (modzMDr (-((2 ^ k ^ 2 - 1 - ((- a * (2 ^ bits %/ SignedReductions.q + 1)) - 1) - 2 ^ k ^ 2) %/ 2 ^ bits)) (-d) q).
+  rewrite modNz /#.
+qed.
 
 (* Signed Montgomery reduction as used in MLKEM v2.0 *)
 
