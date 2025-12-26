@@ -184,8 +184,10 @@ rewrite /barrett_pred /barrett_pred_low /barrett_pred_high /barrett_fun /barrett
 move : (brt a H); move => [#] brtl brth.
 rewrite !modzDm.
 case (0 <= a). 
-+ move => agt0; rewrite !(modz_small (a * (2 ^ bits %/ SignedReductions.q + 1))); 
-    1: by smt(expr2 gtr0_norm ltr_pmul).  
++ move => agt0; rewrite !(modz_small (a * (2 ^ bits %/ SignedReductions.q + 1))).
+    split; 1: smt().
+    rewrite gtr0_norm expr2 1:/# => ?.
+    apply: ltr_pmul; smt().
   have -> /= : !(2 ^ k ^ 2 %/ 2 <= a * (2 ^ bits %/ SignedReductions.q + 1)).
   + rewrite ltr_geF; last by done.
     rewrite expr2 mulrC div_mulr; 1: by rewrite -{1}(expr1 2); apply dvdz_exp2l; smt(gt2_k).
