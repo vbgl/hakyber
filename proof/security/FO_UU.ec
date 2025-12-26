@@ -792,6 +792,15 @@ op m2c(m : plaintext, sk : PKEROM.skey, f : plaintext -> randomness) : ciphertex
 op goodc(c : ciphertext, sk : PKEROM.skey, f : plaintext -> randomness) = 
           c2m c sk <> None /\ m2c (oc2m c sk) sk f = c.
 
+lemma assoc_none_not_in_unzip1 ['a, 'b] (m: ('a * 'b) list) k :
+  assoc m k = None =>
+  !(k \in unzip1 m).
+proof. smt(assoc_none mapP). qed.
+
+lemma map_set_in ['a, 'b] (x: ('a, 'b) fmap) k v :
+  k \in x.[k <- v].
+proof. by rewrite domE get_setE. qed.
+
 local lemma G1_G2 &m :
   (forall (H0 <: POracle_x2{-A} ) (O <: CCA_ORC{ -A} ),
   islossless O.dec => 
@@ -889,7 +898,17 @@ wp;call(:H1.bad,
   if{1}.
   (* badc *) 
   + rcondt {1} 2; 1: by auto => />; smt(assoc_none).
-    by auto => />;smt(get_setE assoc_none assoc_cons mapP).
+    auto => &1 &2 /> [] />.
+    * move => A B C D E F G H I J K r0L r0Lkey.
+      rewrite get_setE (assoc_none_not_in_unzip1 _ _ K) /=.
+      split.
+      - move => [] ?? [].  move => /> *. apply: map_set_in. smt(get_setE ).
+      smt(get_setE assoc_cons ).
+    move => A B C D E F G H I K r0L r0Lkey.
+    rewrite get_setE (assoc_none_not_in_unzip1 _ _ K) /=.
+    split.
+    - move => [] ?? [].  move => /> *. apply: map_set_in. smt(get_setE ).
+    smt(get_setE assoc_cons ).
   (* good c *)
   + rcondt {1} 5; 1: by auto => />; smt(assoc_none).
     by auto => />;smt(get_setE assoc_none assoc_cons mapP).
