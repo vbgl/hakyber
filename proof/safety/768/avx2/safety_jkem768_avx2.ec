@@ -27600,15 +27600,13 @@ while ((valid trace__keccakf1600_avx2) /\ is_init b_state 0 224 /\ 0 <=  r).
 auto .
 ecall (__keccakf1600_pround_avx2_trace param (BArray224.init_arr
                                              (W8.of_int 255) 224)).
-auto .
-rewrite /is_init /valid /=.
-smt (all_cat BArray224.init_arrP).
+auto  => /> &hr *; split; first smt(BArray224.init_arrP).
+by move => *; rewrite /valid !all_cat => /> /#.
 auto .
 ecall (__keccakf1600_pround_avx2_trace param (BArray224.init_arr
                                              (W8.of_int 255) 224)).
-auto .
-rewrite /is_init /valid /= .
-smt (all_cat BArray224.init_arrP).
+auto  => /> &hr *; split; first smt(BArray224.init_arrP).
+by move => *; rewrite /valid !all_cat => /> /#.
 qed .
 
 lemma __u64_to_u256_trace _x _l :
@@ -27625,12 +27623,8 @@ proof.
 proc; auto .
 while ((valid trace___state_init_avx2) /\ (((0 <= i) /\ (i <= 7)) /\
                                            (is_init b_st 0 (32 * i)))).
-auto .
-rewrite /is_init /valid /=.
-smt (all_cat).
-auto .
-rewrite /is_init /valid /= .
-smt (all_cat).
+auto  => &hr /> * /=. rewrite /is_init /valid !all_cat => /> /#.
+auto => &hr _ /> /#.
 qed .
 
 lemma __pstate_init_avx2_trace _pst _b_pst :
@@ -27643,12 +27637,11 @@ ecall (__state_init_avx2_trace).
 auto .
 while ((valid trace___pstate_init_avx2) /\  (((0 <= i) /\ (i <= 6)) /\
                                             (is_init b_pst 0 (32 * i)))).
-auto .
-rewrite /is_init /valid /=.
-smt (all_cat).
-auto .
-rewrite /is_init /valid /= .
-smt (all_cat BArray224.init_arrP).
+auto  => &hr *; rewrite /is_init /valid !all_cat => /> /#.
+auto => &hr * />; split; first smt().
+move => *; rewrite /valid !all_cat => />.
+rewrite /is_init.
+smt (BArray224.init_arrP).
 qed .
 
 lemma __perm_reg3456_avx2_trace _r3 _r4 _r5 _r6 :
@@ -27706,9 +27699,8 @@ proc; auto .
 ecall (__addstate_r3456_avx2_trace param_3 (BArray224.init_arr
                                            (W8.of_int 255) 224) param_2 
        param_1 param_0 param).
-auto .
-rewrite /is_init /valid /= .
-smt (all_cat BArray224.init_arrP).
+auto => &hr /> *; split; first smt(BArray224.init_arrP).
+by move => *; rewrite all_cat => />.
 qed .
 
 lemma _addpstate_avx2_trace _st _b_st _pst _b_pst :
@@ -27724,9 +27716,10 @@ ecall (__addpst23456_avx2_trace param_0 (BArray224.init_arr (W8.of_int 255)
 auto .
 ecall (__addpst01_avx2_trace param_2 (BArray224.init_arr (W8.of_int 255) 224) 
        param_1 (BArray200.init_arr (W8.of_int 255) 200)).
-auto .
-rewrite /is_init /valid /= .
-smt (all_cat BArray224.init_arrP BArray200.init_arrP).
+auto => &hr /> *; split.
+split; first smt(BArray200.init_arrP).
+smt(BArray224.init_arrP).
+by move => *; rewrite !all_cat => />.
 qed .
 
 lemma __stavx2_pos_avx2_trace _pOS :
@@ -27745,16 +27738,14 @@ proof.
   proc; rewrite /=.
   seq 10: (#pre /\ valid trace___addratebit_avx2 /\ 0<=r /\ r < 7 ).
   + auto. ecall (__stavx2_pos_avx2_trace param_1).
-    auto. smt(all_cat).
+    by auto => &hr /> *; rewrite all_cat => />.
   if .
-  + auto .
-    rewrite /trace /is_init /valid /=.
-    smt (all_cat BArray224.init_arrP).
+  + auto => &hr /> *; split; first smt(BArray224.init_arrP).
+    by rewrite /valid !all_cat => />.
   auto .
   ecall (__u64_to_u256_trace param_0 param).
-  auto .
-  rewrite /trace /is_init /valid /=.
-  smt (all_cat BArray224.init_arrP).
+  auto => &hr /> *; split; first smt(BArray224.init_arrP).
+  rewrite /valid !all_cat => /> /#.
 qed .
 
 lemma keccakf1600_4x_theta_sum_trace _a _b_a :
@@ -27767,10 +27758,12 @@ proc; auto .
   + auto.
     while(is_init b_c 0 (32*5) /\ 0<=y /\ is_init b_a 0 800 /\
           valid trace_keccakf1600_4x_theta_sum /\ 0<=x  /\ y<5);
-    auto; rewrite /is_init /valid  /=; smt(all_cat).
+    auto => &hr /> *; last smt().
+    split; first rewrite /is_init /#.
+    rewrite /valid !all_cat => /> /#.
   auto.
   while(is_init b_c 0 (32*x) /\ 0<=x /\ x<=5 /\  is_init b_a 0 800 /\ valid trace_keccakf1600_4x_theta_sum);
-  auto; rewrite /is_init  /valid /=; smt(all_cat).
+  auto => &hr /> *; rewrite /is_init /valid ?all_cat => /> /#.
 qed .
 
 
