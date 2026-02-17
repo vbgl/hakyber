@@ -1,7 +1,7 @@
 { pkgs ?
     import (fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/c6f52ebd45e5925c188d1a20119978aa4ffd5ef6.tar.gz";
-      sha256 = "sha256-m5KWt1nOm76ILk/JSCxBM4MfK3rYY7Wq9/TZIIeGnT8=";
+      url = "https://github.com/NixOS/nixpkgs/archive/3aadb7ca9eac2891d52a9dec199d9580a6e2bf44.tar.gz";
+      sha256 = "sha256-O1XDr7EWbRp+kHrNNgLWgIrB0/US5wvw9K6RERWAj6I=";
     }) {}
 , full ? true
 }:
@@ -10,12 +10,12 @@ with pkgs;
 
 let jasmin =
   jasmin-compiler.overrideAttrs (o: {
-    src = fetchFromGitLab {
-      owner = "jasmin-lang";
-      repo = "jasmin-compiler";
-      rev = "a0781d3e6250dcef4b25108f717cbdd9437294f2";
-      hash = "sha256-FFvJE8XC0nUWmY0pFrT+VJ5kFaio6vI7FTcqCpVwQIA=";
-    };
+    #src = fetchFromGitLab {
+      #owner = "jasmin-lang";
+      #repo = "jasmin-compiler";
+      #rev = "60660611a8fd8d1547fef6eceee3d2ecd986aa70";
+      #hash = "sha256-LiBfaIEAkLDQxZjuk0m9QKRTt03cVeeNfWi+Y2xowsM=";
+    #};
   })
 ; in
 

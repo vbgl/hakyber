@@ -6,15 +6,15 @@ import SLH64.
 
 require import
 Array1 Array2 Array4 Array5 Array6 Array7 Array8 Array16 Array24 Array25
-Array32 Array33 Array64 Array128 Array136 Array256 Array384 Array400 Array536
-Array768 Array960 Array1024 Array1088 Array1120 Array1152 Array1184 Array2048
-Array2144 Array2304 Array2400 WArray1 WArray2 WArray4 WArray8 WArray16
-WArray32 WArray33 WArray64 WArray128 WArray160 WArray192 WArray200 WArray224
-WArray256 WArray384 WArray512 WArray536 WArray800 WArray960 WArray1088
-WArray1120 WArray1152 WArray1184 WArray1536 WArray2048 WArray2144 WArray2400
-WArray4608.
+Array32 Array33 Array64 Array128 Array136 Array224 Array256 Array384 Array400
+Array536 Array768 Array800 Array960 Array1024 Array1088 Array1120 Array1152
+Array1184 Array2048 Array2144 Array2304 Array2400 WArray1 WArray2 WArray4
+WArray8 WArray16 WArray32 WArray33 WArray64 WArray128 WArray160 WArray192
+WArray200 WArray224 WArray256 WArray384 WArray512 WArray536 WArray800
+WArray960 WArray1088 WArray1120 WArray1152 WArray1184 WArray1536 WArray2048
+WArray2144 WArray2400 WArray4608.
 
-abbrev  gen_matrix_indexes =
+abbrev gen_matrix_indexes =
 ((Array32.of_list witness)
 [(W8.of_int 0); (W8.of_int 0); (W8.of_int 1); (W8.of_int 0); (W8.of_int 2);
 (W8.of_int 0); (W8.of_int 0); (W8.of_int 1); (W8.of_int 1); (W8.of_int 1);
@@ -24,7 +24,7 @@ abbrev  gen_matrix_indexes =
 (W8.of_int 1); (W8.of_int 1); (W8.of_int 2); (W8.of_int 2); (W8.of_int 0);
 (W8.of_int 2); (W8.of_int 1)]).
 
-abbrev  sample_shuffle_table =
+abbrev sample_shuffle_table =
 ((Array2048.of_list witness)
 [(W8.of_int (-1)); (W8.of_int (-1)); (W8.of_int (-1)); (W8.of_int (-1));
 (W8.of_int (-1)); (W8.of_int (-1)); (W8.of_int (-1)); (W8.of_int (-1));
@@ -534,19 +534,19 @@ abbrev  sample_shuffle_table =
 (W8.of_int (-1)); (W8.of_int 0); (W8.of_int 2); (W8.of_int 4); (W8.of_int 6);
 (W8.of_int 8); (W8.of_int 10); (W8.of_int 12); (W8.of_int 14)]).
 
-abbrev [-printing] sample_q =
+abbrev sample_q =
 (W256.of_int
 5881923629679188442283784376194736327817742869488325897419002016668082834689).
 
-abbrev [-printing] sample_mask =
+abbrev sample_mask =
 (W256.of_int
 7235349132933696807194982583513801520701008426120364839270295361446620368895).
 
-abbrev [-printing] sample_ones =
+abbrev sample_ones =
 (W256.of_int
 454086624460063511464984254936031011189294057512315937409637584344757371137).
 
-abbrev  sample_load_shuffle =
+abbrev sample_load_shuffle =
 ((Array32.of_list witness)
 [(W8.of_int 0); (W8.of_int 1); (W8.of_int 1); (W8.of_int 2); (W8.of_int 3);
 (W8.of_int 4); (W8.of_int 4); (W8.of_int 5); (W8.of_int 6); (W8.of_int 7);
@@ -556,7 +556,7 @@ abbrev  sample_load_shuffle =
 (W8.of_int 11); (W8.of_int 11); (W8.of_int 12); (W8.of_int 13);
 (W8.of_int 14); (W8.of_int 14); (W8.of_int 15)]).
 
-abbrev  pvc_shufbidx_s =
+abbrev pvc_shufbidx_s =
 ((Array32.of_list witness)
 [(W8.of_int 0); (W8.of_int 1); (W8.of_int 2); (W8.of_int 3); (W8.of_int 4);
 (W8.of_int 8); (W8.of_int 9); (W8.of_int 10); (W8.of_int 11); (W8.of_int 12);
@@ -567,21 +567,21 @@ abbrev  pvc_shufbidx_s =
 (W8.of_int 0); (W8.of_int 1); (W8.of_int 2); (W8.of_int 3); (W8.of_int 4);
 (W8.of_int 8)]).
 
-abbrev [-printing] pvc_sllvdidx_s = (W64.of_int 12).
+abbrev pvc_sllvdidx_s = (W64.of_int 12).
 
-abbrev [-printing] pvc_shift2_s = (W64.of_int 288230380513787905).
+abbrev pvc_shift2_s = (W64.of_int 288230380513787905).
 
-abbrev [-printing] pvc_mask_s = (W16.of_int 1023).
+abbrev pvc_mask_s = (W16.of_int 1023).
 
-abbrev [-printing] pvc_shift1_s = (W16.of_int 4096).
+abbrev pvc_shift1_s = (W16.of_int 4096).
 
-abbrev [-printing] pvc_off_s = (W16.of_int 15).
+abbrev pvc_off_s = (W16.of_int 15).
 
-abbrev [-printing] pvd_mask_s = (W32.of_int 2145394680).
+abbrev pvd_mask_s = (W32.of_int 2145394680).
 
-abbrev [-printing] pvd_sllvdidx_s = (W64.of_int 4).
+abbrev pvd_sllvdidx_s = (W64.of_int 4).
 
-abbrev  pvd_shufbdidx_s =
+abbrev pvd_shufbdidx_s =
 ((Array32.of_list witness)
 [(W8.of_int 0); (W8.of_int 1); (W8.of_int 1); (W8.of_int 2); (W8.of_int 2);
 (W8.of_int 3); (W8.of_int 3); (W8.of_int 4); (W8.of_int 5); (W8.of_int 6);
@@ -591,13 +591,13 @@ abbrev  pvd_shufbdidx_s =
 (W8.of_int 8); (W8.of_int 8); (W8.of_int 9); (W8.of_int 9); (W8.of_int 10);
 (W8.of_int 10); (W8.of_int 11)]).
 
-abbrev [-printing] pvd_q_s = (W32.of_int 218182660).
+abbrev pvd_q_s = (W32.of_int 218182660).
 
-abbrev [-printing] pd_shift_s = (W32.of_int 8390656).
+abbrev pd_shift_s = (W32.of_int 8390656).
 
-abbrev [-printing] pd_mask_s = (W32.of_int 15728655).
+abbrev pd_mask_s = (W32.of_int 15728655).
 
-abbrev  pd_jshufbidx =
+abbrev pd_jshufbidx =
 ((Array32.of_list witness)
 [(W8.of_int 0); (W8.of_int 0); (W8.of_int 0); (W8.of_int 0); (W8.of_int 1);
 (W8.of_int 1); (W8.of_int 1); (W8.of_int 1); (W8.of_int 2); (W8.of_int 2);
@@ -607,39 +607,39 @@ abbrev  pd_jshufbidx =
 (W8.of_int 6); (W8.of_int 6); (W8.of_int 6); (W8.of_int 7); (W8.of_int 7);
 (W8.of_int 7); (W8.of_int 7)]).
 
-abbrev  pc_permidx_s =
+abbrev pc_permidx_s =
 ((Array8.of_list witness)
 [(W32.of_int 0); (W32.of_int 4); (W32.of_int 1); (W32.of_int 5);
 (W32.of_int 2); (W32.of_int 6); (W32.of_int 3); (W32.of_int 7)]).
 
-abbrev [-printing] pc_shift2_s = (W16.of_int 4097).
+abbrev pc_shift2_s = (W16.of_int 4097).
 
-abbrev [-printing] pc_mask_s = (W16.of_int 15).
+abbrev pc_mask_s = (W16.of_int 15).
 
-abbrev [-printing] pc_shift1_s = (W16.of_int 512).
+abbrev pc_shift1_s = (W16.of_int 512).
 
-abbrev  pfm_idx_s =
+abbrev pfm_idx_s =
 ((Array16.of_list witness)
 [(W8.of_int 0); (W8.of_int 1); (W8.of_int 4); (W8.of_int 5); (W8.of_int 8);
 (W8.of_int 9); (W8.of_int 12); (W8.of_int 13); (W8.of_int 2); (W8.of_int 3);
 (W8.of_int 6); (W8.of_int 7); (W8.of_int 10); (W8.of_int 11); (W8.of_int 14);
 (W8.of_int 15)]).
 
-abbrev  pfm_shift_s =
+abbrev pfm_shift_s =
 ((Array4.of_list witness)
 [(W32.of_int 3); (W32.of_int 2); (W32.of_int 1); (W32.of_int 0)]).
 
-abbrev [-printing] rOL8 =
+abbrev rOL8 =
 (W256.of_int
 13620818001941277694121380808605999856886653716761013959207994299728839901191
 ).
 
-abbrev [-printing] rOL56 =
+abbrev rOL56 =
 (W256.of_int
 10910488462195273559651782724632284871561478246514020268633800075540923875841
 ).
 
-abbrev  kECCAK_RHOTATES_RIGHT =
+abbrev kECCAK_RHOTATES_RIGHT =
 ((Array6.of_list witness)
 [(W256.of_int 144373339913893657577751063007562604548177214458152943091773);
 (W256.of_int 232252764209307188274174373867837442080505530800860351692863);
@@ -648,7 +648,7 @@ abbrev  kECCAK_RHOTATES_RIGHT =
 (W256.of_int 276192476357013953622045746931053922384479139705868246843454);
 (W256.of_int 313855086769334038206421612937983674734430261968315659321364)]).
 
-abbrev  kECCAK_RHOTATES_LEFT =
+abbrev kECCAK_RHOTATES_LEFT =
 ((Array6.of_list witness)
 [(W256.of_int 257361171150853911329517531560668107745210100483895842570243);
 (W256.of_int 169481746855440380633094220700393270212881784141188433969153);
@@ -657,7 +657,7 @@ abbrev  kECCAK_RHOTATES_LEFT =
 (W256.of_int 125542034707733615285222847637176789908908175236180538818562);
 (W256.of_int 87879424295413530700846981630247037558957052973733126340652)]).
 
-abbrev  kECCAK1600_RC =
+abbrev kECCAK1600_RC =
 ((Array24.of_list witness)
 [(W64.of_int 1); (W64.of_int 32898); (W64.of_int (-9223372036854742902));
 (W64.of_int (-9223372034707259392)); (W64.of_int 32907);
@@ -671,14 +671,14 @@ abbrev  kECCAK1600_RC =
 (W64.of_int (-9223372036854742912)); (W64.of_int 2147483649);
 (W64.of_int (-9223372034707259384))]).
 
-abbrev  jdmontx16 =
+abbrev jdmontx16 =
 ((Array16.of_list witness)
 [(W16.of_int 1353); (W16.of_int 1353); (W16.of_int 1353); (W16.of_int 1353);
 (W16.of_int 1353); (W16.of_int 1353); (W16.of_int 1353); (W16.of_int 1353);
 (W16.of_int 1353); (W16.of_int 1353); (W16.of_int 1353); (W16.of_int 1353);
 (W16.of_int 1353); (W16.of_int 1353); (W16.of_int 1353); (W16.of_int 1353)]).
 
-abbrev  mqinvx16 =
+abbrev mqinvx16 =
 ((Array16.of_list witness)
 [(W16.of_int 15099); (W16.of_int 15099); (W16.of_int 15099);
 (W16.of_int 15099); (W16.of_int 15099); (W16.of_int 15099);
@@ -687,35 +687,35 @@ abbrev  mqinvx16 =
 (W16.of_int 15099); (W16.of_int 15099); (W16.of_int 15099);
 (W16.of_int 15099)]).
 
-abbrev  hhqx16 =
+abbrev hhqx16 =
 ((Array16.of_list witness)
 [(W16.of_int 832); (W16.of_int 832); (W16.of_int 832); (W16.of_int 832);
 (W16.of_int 832); (W16.of_int 832); (W16.of_int 832); (W16.of_int 832);
 (W16.of_int 832); (W16.of_int 832); (W16.of_int 832); (W16.of_int 832);
 (W16.of_int 832); (W16.of_int 832); (W16.of_int 832); (W16.of_int 832)]).
 
-abbrev  hqx16_m1 =
+abbrev hqx16_m1 =
 ((Array16.of_list witness)
 [(W16.of_int 1664); (W16.of_int 1664); (W16.of_int 1664); (W16.of_int 1664);
 (W16.of_int 1664); (W16.of_int 1664); (W16.of_int 1664); (W16.of_int 1664);
 (W16.of_int 1664); (W16.of_int 1664); (W16.of_int 1664); (W16.of_int 1664);
 (W16.of_int 1664); (W16.of_int 1664); (W16.of_int 1664); (W16.of_int 1664)]).
 
-abbrev  hqx16_p1 =
+abbrev hqx16_p1 =
 ((Array16.of_list witness)
 [(W16.of_int 1665); (W16.of_int 1665); (W16.of_int 1665); (W16.of_int 1665);
 (W16.of_int 1665); (W16.of_int 1665); (W16.of_int 1665); (W16.of_int 1665);
 (W16.of_int 1665); (W16.of_int 1665); (W16.of_int 1665); (W16.of_int 1665);
 (W16.of_int 1665); (W16.of_int 1665); (W16.of_int 1665); (W16.of_int 1665)]).
 
-abbrev  maskx16 =
+abbrev maskx16 =
 ((Array16.of_list witness)
 [(W16.of_int 4095); (W16.of_int 4095); (W16.of_int 4095); (W16.of_int 4095);
 (W16.of_int 4095); (W16.of_int 4095); (W16.of_int 4095); (W16.of_int 4095);
 (W16.of_int 4095); (W16.of_int 4095); (W16.of_int 4095); (W16.of_int 4095);
 (W16.of_int 4095); (W16.of_int 4095); (W16.of_int 4095); (W16.of_int 4095)]).
 
-abbrev  jflox16 =
+abbrev jflox16 =
 ((Array16.of_list witness)
 [(W16.of_int (-10079)); (W16.of_int (-10079)); (W16.of_int (-10079));
 (W16.of_int (-10079)); (W16.of_int (-10079)); (W16.of_int (-10079));
@@ -724,14 +724,14 @@ abbrev  jflox16 =
 (W16.of_int (-10079)); (W16.of_int (-10079)); (W16.of_int (-10079));
 (W16.of_int (-10079))]).
 
-abbrev  jfhix16 =
+abbrev jfhix16 =
 ((Array16.of_list witness)
 [(W16.of_int 1441); (W16.of_int 1441); (W16.of_int 1441); (W16.of_int 1441);
 (W16.of_int 1441); (W16.of_int 1441); (W16.of_int 1441); (W16.of_int 1441);
 (W16.of_int 1441); (W16.of_int 1441); (W16.of_int 1441); (W16.of_int 1441);
 (W16.of_int 1441); (W16.of_int 1441); (W16.of_int 1441); (W16.of_int 1441)]).
 
-abbrev  jvx16 =
+abbrev jvx16 =
 ((Array16.of_list witness)
 [(W16.of_int 20159); (W16.of_int 20159); (W16.of_int 20159);
 (W16.of_int 20159); (W16.of_int 20159); (W16.of_int 20159);
@@ -740,7 +740,7 @@ abbrev  jvx16 =
 (W16.of_int 20159); (W16.of_int 20159); (W16.of_int 20159);
 (W16.of_int 20159)]).
 
-abbrev  jqinvx16 =
+abbrev jqinvx16 =
 ((Array16.of_list witness)
 [(W16.of_int (-3327)); (W16.of_int (-3327)); (W16.of_int (-3327));
 (W16.of_int (-3327)); (W16.of_int (-3327)); (W16.of_int (-3327));
@@ -749,14 +749,14 @@ abbrev  jqinvx16 =
 (W16.of_int (-3327)); (W16.of_int (-3327)); (W16.of_int (-3327));
 (W16.of_int (-3327))]).
 
-abbrev  jqx16 =
+abbrev jqx16 =
 ((Array16.of_list witness)
 [(W16.of_int 3329); (W16.of_int 3329); (W16.of_int 3329); (W16.of_int 3329);
 (W16.of_int 3329); (W16.of_int 3329); (W16.of_int 3329); (W16.of_int 3329);
 (W16.of_int 3329); (W16.of_int 3329); (W16.of_int 3329); (W16.of_int 3329);
 (W16.of_int 3329); (W16.of_int 3329); (W16.of_int 3329); (W16.of_int 3329)]).
 
-abbrev  jzetas_inv_exp =
+abbrev jzetas_inv_exp =
 ((Array400.of_list witness)
 [(W16.of_int (-23131)); (W16.of_int (-7756)); (W16.of_int 20258);
 (W16.of_int 23860); (W16.of_int 17443); (W16.of_int (-23210));
@@ -877,7 +877,7 @@ abbrev  jzetas_inv_exp =
 (W16.of_int 1932); (W16.of_int 0); (W16.of_int 0); (W16.of_int 0);
 (W16.of_int 0)]).
 
-abbrev  jzetas_exp =
+abbrev jzetas_exp =
 ((Array400.of_list witness)
 [(W16.of_int 31499); (W16.of_int 31499); (W16.of_int 2571);
 (W16.of_int 2571); (W16.of_int 14746); (W16.of_int 14746); (W16.of_int 2970);
@@ -996,7 +996,7 @@ abbrev  jzetas_exp =
 (W16.of_int 1628); (W16.of_int 0); (W16.of_int 0); (W16.of_int 0);
 (W16.of_int 0)]).
 
-abbrev  jzetas_inv =
+abbrev jzetas_inv =
 ((Array128.of_list witness)
 [(W16.of_int 1701); (W16.of_int 1807); (W16.of_int 1460); (W16.of_int 2371);
 (W16.of_int 2338); (W16.of_int 2333); (W16.of_int 308); (W16.of_int 108);
@@ -1031,7 +1031,7 @@ abbrev  jzetas_inv =
 (W16.of_int 3127); (W16.of_int 3042); (W16.of_int 1907); (W16.of_int 1836);
 (W16.of_int 1517); (W16.of_int 359); (W16.of_int 758); (W16.of_int 1441)]).
 
-abbrev  jzetas =
+abbrev jzetas =
 ((Array128.of_list witness)
 [(W16.of_int 2285); (W16.of_int 2571); (W16.of_int 2970); (W16.of_int 1812);
 (W16.of_int 1493); (W16.of_int 1422); (W16.of_int 287); (W16.of_int 202);
@@ -6678,25 +6678,37 @@ module M = {
     return (buf0, buf1, buf2, buf3, offset);
   }
   proc _sha3_512A_A33 (out:W8.t Array64.t, in_0:W8.t Array33.t) : W8.t Array64.t = {
+    var aux:W256.t Array7.t;
+    var aux_0:W8.t Array64.t;
     var st:W256.t Array7.t;
     var  _0:int;
-    var  _1:W256.t Array7.t;
+    var  _1:W8.t Array224.t;
      _1 <- witness;
     st <- witness;
     st <@ __state_init_avx2 ();
     (st,  _0) <@ a33____absorb_avx2 (st, 0, in_0, 6, 72);
-    ( _1, out) <@ a64____squeeze_avx2 (st, out, 72);
+    (aux, aux_0) <@ a64____squeeze_avx2 (st, out, 72);
+     _1 <-
+    (Array224.init (fun i => (get8 (WArray224.init256 (fun i => aux.[i])) i))
+    );
+    out <- aux_0;
     return out;
   }
   proc _sha3_512A_A64 (out:W8.t Array64.t, in_0:W8.t Array64.t) : W8.t Array64.t = {
+    var aux:W256.t Array7.t;
+    var aux_0:W8.t Array64.t;
     var st:W256.t Array7.t;
     var  _0:int;
-    var  _1:W256.t Array7.t;
+    var  _1:W8.t Array224.t;
      _1 <- witness;
     st <- witness;
     st <@ __state_init_avx2 ();
     (st,  _0) <@ a64____absorb_avx2 (st, 0, in_0, 6, 72);
-    ( _1, out) <@ a64____squeeze_avx2 (st, out, 72);
+    (aux, aux_0) <@ a64____squeeze_avx2 (st, out, 72);
+     _1 <-
+    (Array224.init (fun i => (get8 (WArray224.init256 (fun i => aux.[i])) i))
+    );
+    out <- aux_0;
     return out;
   }
   proc _shake256x4_A128__A32_A1 (out0:W8.t Array128.t, out1:W8.t Array128.t,
@@ -6842,26 +6854,38 @@ module M = {
   }
   proc _sha3_256A_A1184 (out:W8.t Array32.t, in_0:W8.t Array1184.t) : 
   W8.t Array32.t = {
+    var aux:W256.t Array7.t;
+    var aux_0:W8.t Array32.t;
     var st:W256.t Array7.t;
     var  _0:int;
-    var  _1:W256.t Array7.t;
+    var  _1:W8.t Array224.t;
      _1 <- witness;
     st <- witness;
     st <@ __state_init_avx2 ();
     (st,  _0) <@ a1184____absorb_avx2 (st, 0, in_0, 6, 136);
-    ( _1, out) <@ a32____squeeze_avx2 (st, out, 136);
+    (aux, aux_0) <@ a32____squeeze_avx2 (st, out, 136);
+     _1 <-
+    (Array224.init (fun i => (get8 (WArray224.init256 (fun i => aux.[i])) i))
+    );
+    out <- aux_0;
     return out;
   }
   proc _shake256_A32__A1120 (out:W8.t Array32.t, in_0:W8.t Array1120.t) : 
   W8.t Array32.t = {
+    var aux:W256.t Array7.t;
+    var aux_0:W8.t Array32.t;
     var st:W256.t Array7.t;
     var  _0:int;
-    var  _1:W256.t Array7.t;
+    var  _1:W8.t Array224.t;
      _1 <- witness;
     st <- witness;
     st <@ __state_init_avx2 ();
     (st,  _0) <@ a1120____absorb_avx2 (st, 0, in_0, 31, 136);
-    ( _1, out) <@ a32____squeeze_avx2 (st, out, 136);
+    (aux, aux_0) <@ a32____squeeze_avx2 (st, out, 136);
+     _1 <-
+    (Array224.init (fun i => (get8 (WArray224.init256 (fun i => aux.[i])) i))
+    );
+    out <- aux_0;
     return out;
   }
   proc _poly_add2 (rp:W16.t Array256.t, bp:W16.t Array256.t) : W16.t Array256.t = {
@@ -8964,14 +8988,16 @@ module M = {
                                             rho:W8.t Array32.t,
                                             pos_entry:W64.t, transposed:W64.t) : 
   W16.t Array1024.t * W8.t Array2144.t = {
-    var aux_0:W16.t Array256.t;
+    var aux_2:W16.t Array256.t;
+    var aux_0:W256.t Array25.t;
     var aux:W64.t;
-    var aux_1:W8.t Array536.t;
+    var aux_1:W8.t Array2144.t;
+    var aux_3:W8.t Array536.t;
     var indexes:W8.t Array8.t;
     var state:W256.t Array25.t;
     var stx4:W256.t Array25.t;
     var pol:W16.t Array256.t;
-    var  _0:W256.t Array25.t;
+    var  _0:W8.t Array800.t;
      _0 <- witness;
     indexes <- witness;
     pol <- witness;
@@ -8984,14 +9010,18 @@ module M = {
     (WArray8.set64_direct (WArray8.init8 (fun i => indexes.[i])) 0 aux)));
     stx4 <- state;
     stx4 <@ _shake128x4_absorb_A32_A2 (stx4, rho, indexes);
-    ( _0, buf) <@ _shake128x4_squeeze3blocks (stx4, buf);
+    (aux_0, aux_1) <@ _shake128x4_squeeze3blocks (stx4, buf);
+     _0 <-
+    (Array800.init
+    (fun i => (get8 (WArray800.init256 (fun i => aux_0.[i])) i)));
+    buf <- aux_1;
     pol <- (Array256.init (fun i => polx4.[((0 * 256) + i)]));
-    (aux_0, aux_1) <@ __gen_matrix_fill_polynomial (pol,
+    (aux_2, aux_3) <@ __gen_matrix_fill_polynomial (pol,
     (Array536.init (fun i => buf.[((536 * 0) + i)])));
-    pol <- aux_0;
+    pol <- aux_2;
     buf <-
     (Array2144.init
-    (fun i => (if ((536 * 0) <= i < ((536 * 0) + 536)) then aux_1.[(i -
+    (fun i => (if ((536 * 0) <= i < ((536 * 0) + 536)) then aux_3.[(i -
                                                                    (536 * 0))] else 
               buf.[i]))
     );
@@ -9002,12 +9032,12 @@ module M = {
               polx4.[i]))
     );
     pol <- (Array256.init (fun i => polx4.[((1 * 256) + i)]));
-    (aux_0, aux_1) <@ __gen_matrix_fill_polynomial (pol,
+    (aux_2, aux_3) <@ __gen_matrix_fill_polynomial (pol,
     (Array536.init (fun i => buf.[((536 * 1) + i)])));
-    pol <- aux_0;
+    pol <- aux_2;
     buf <-
     (Array2144.init
-    (fun i => (if ((536 * 1) <= i < ((536 * 1) + 536)) then aux_1.[(i -
+    (fun i => (if ((536 * 1) <= i < ((536 * 1) + 536)) then aux_3.[(i -
                                                                    (536 * 1))] else 
               buf.[i]))
     );
@@ -9018,12 +9048,12 @@ module M = {
               polx4.[i]))
     );
     pol <- (Array256.init (fun i => polx4.[((2 * 256) + i)]));
-    (aux_0, aux_1) <@ __gen_matrix_fill_polynomial (pol,
+    (aux_2, aux_3) <@ __gen_matrix_fill_polynomial (pol,
     (Array536.init (fun i => buf.[((536 * 2) + i)])));
-    pol <- aux_0;
+    pol <- aux_2;
     buf <-
     (Array2144.init
-    (fun i => (if ((536 * 2) <= i < ((536 * 2) + 536)) then aux_1.[(i -
+    (fun i => (if ((536 * 2) <= i < ((536 * 2) + 536)) then aux_3.[(i -
                                                                    (536 * 2))] else 
               buf.[i]))
     );
@@ -9034,12 +9064,12 @@ module M = {
               polx4.[i]))
     );
     pol <- (Array256.init (fun i => polx4.[((3 * 256) + i)]));
-    (aux_0, aux_1) <@ __gen_matrix_fill_polynomial (pol,
+    (aux_2, aux_3) <@ __gen_matrix_fill_polynomial (pol,
     (Array536.init (fun i => buf.[((536 * 3) + i)])));
-    pol <- aux_0;
+    pol <- aux_2;
     buf <-
     (Array2144.init
-    (fun i => (if ((536 * 3) <= i < ((536 * 3) + 536)) then aux_1.[(i -
+    (fun i => (if ((536 * 3) <= i < ((536 * 3) + 536)) then aux_3.[(i -
                                                                    (536 * 3))] else 
               buf.[i]))
     );

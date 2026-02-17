@@ -6,13 +6,13 @@ import SLH64.
 
 require import
 Array4 Array5 Array8 Array24 Array25 Array32 Array33 Array34 Array64 Array128
-Array160 Array168 Array196 Array256 Array384 Array396 Array1024 Array1408
-Array1536 Array1568 Array3168 Array4096 WArray8 WArray16 WArray32 WArray33
-WArray34 WArray40 WArray64 WArray128 WArray160 WArray168 WArray192 WArray200
-WArray256 WArray384 WArray512 WArray1408 WArray1536 WArray1568 WArray2048
-WArray3168 WArray8192.
+Array160 Array168 Array196 Array200 Array256 Array384 Array396 Array512
+Array1024 Array1408 Array1536 Array1568 Array3168 Array4096 WArray8 WArray16
+WArray32 WArray33 WArray34 WArray40 WArray64 WArray128 WArray160 WArray168
+WArray192 WArray200 WArray256 WArray384 WArray512 WArray1408 WArray1536
+WArray1568 WArray2048 WArray3168 WArray8192.
 
-abbrev  jzetas_inv =
+abbrev jzetas_inv =
 ((Array128.of_list witness)
 [(W16.of_int 1701); (W16.of_int 1807); (W16.of_int 1460); (W16.of_int 2371);
 (W16.of_int 2338); (W16.of_int 2333); (W16.of_int 308); (W16.of_int 108);
@@ -47,7 +47,7 @@ abbrev  jzetas_inv =
 (W16.of_int 3127); (W16.of_int 3042); (W16.of_int 1907); (W16.of_int 1836);
 (W16.of_int 1517); (W16.of_int 359); (W16.of_int 758); (W16.of_int 1441)]).
 
-abbrev  jzetas =
+abbrev jzetas =
 ((Array128.of_list witness)
 [(W16.of_int 2285); (W16.of_int 2571); (W16.of_int 2970); (W16.of_int 1812);
 (W16.of_int 1493); (W16.of_int 1422); (W16.of_int 287); (W16.of_int 202);
@@ -82,7 +82,7 @@ abbrev  jzetas =
 (W16.of_int 3221); (W16.of_int 3021); (W16.of_int 996); (W16.of_int 991);
 (W16.of_int 958); (W16.of_int 1869); (W16.of_int 1522); (W16.of_int 1628)]).
 
-abbrev  kECCAK1600_RC =
+abbrev kECCAK1600_RC =
 ((Array24.of_list witness)
 [(W64.of_int 1); (W64.of_int 32898); (W64.of_int (-9223372036854742902));
 (W64.of_int (-9223372034707259392)); (W64.of_int 32907);
@@ -1556,10 +1556,12 @@ module M = {
   }
   proc _shake256_128_33 (out:W8.t Array128.t, in_0:W8.t Array33.t) : 
   W8.t Array128.t = {
+    var aux:W64.t Array25.t;
+    var aux_0:W8.t Array128.t;
     var st_s:W64.t Array25.t;
     var st:W64.t Array25.t;
     var  _0:int;
-    var  _1:W64.t Array25.t;
+    var  _1:W8.t Array200.t;
      _1 <- witness;
     st <- witness;
     st_s <- witness;
@@ -1568,16 +1570,21 @@ module M = {
     (* Erased call to spill *)
     (st,  _0) <@ a33____absorb_ref (st, 0, in_0, 31, 136);
     (* Erased call to unspill *)
-    ( _1, out) <@ a128____squeeze_ref (st, out, 136);
+    (aux, aux_0) <@ a128____squeeze_ref (st, out, 136);
+     _1 <-
+    (Array200.init (fun i => (get8 (WArray200.init64 (fun i => aux.[i])) i)));
+    out <- aux_0;
     return out;
   }
   proc _shake256_A32__A1600 (out:W8.t Array32.t, in0:W8.t Array32.t,
                              in1:W8.t Array1568.t) : W8.t Array32.t = {
+    var aux:W64.t Array25.t;
+    var aux_0:W8.t Array32.t;
     var st_s:W64.t Array25.t;
     var st:W64.t Array25.t;
     var  _0:int;
     var  _1:int;
-    var  _2:W64.t Array25.t;
+    var  _2:W8.t Array200.t;
      _2 <- witness;
     st <- witness;
     st_s <- witness;
@@ -1589,14 +1596,19 @@ module M = {
     (* Erased call to unspill *)
     (st,  _1) <@ a1568____absorb_ref (st, 32, in1, 31, 136);
     (* Erased call to unspill *)
-    ( _2, out) <@ a32____squeeze_ref (st, out, 136);
+    (aux, aux_0) <@ a32____squeeze_ref (st, out, 136);
+     _2 <-
+    (Array200.init (fun i => (get8 (WArray200.init64 (fun i => aux.[i])) i)));
+    out <- aux_0;
     return out;
   }
   proc _sha3_512A_A33 (out:W8.t Array64.t, in_0:W8.t Array33.t) : W8.t Array64.t = {
+    var aux:W64.t Array25.t;
+    var aux_0:W8.t Array64.t;
     var st_s:W64.t Array25.t;
     var st:W64.t Array25.t;
     var  _0:int;
-    var  _1:W64.t Array25.t;
+    var  _1:W8.t Array200.t;
      _1 <- witness;
     st <- witness;
     st_s <- witness;
@@ -1605,7 +1617,10 @@ module M = {
     (* Erased call to spill *)
     (st,  _0) <@ a33____absorb_ref (st, 0, in_0, 6, 72);
     (* Erased call to unspill *)
-    ( _1, out) <@ a64____squeeze_ref (st, out, 72);
+    (aux, aux_0) <@ a64____squeeze_ref (st, out, 72);
+     _1 <-
+    (Array200.init (fun i => (get8 (WArray200.init64 (fun i => aux.[i])) i)));
+    out <- aux_0;
     return out;
   }
   proc _shake128_absorb34 (st:W64.t Array25.t, in_0:W8.t Array34.t) : 
@@ -1626,10 +1641,12 @@ module M = {
   }
   proc _sha3_256A_A1568 (out:W8.t Array32.t, in_0:W8.t Array1568.t) : 
   W8.t Array32.t = {
+    var aux:W64.t Array25.t;
+    var aux_0:W8.t Array32.t;
     var st_s:W64.t Array25.t;
     var st:W64.t Array25.t;
     var  _0:int;
-    var  _1:W64.t Array25.t;
+    var  _1:W8.t Array200.t;
      _1 <- witness;
     st <- witness;
     st_s <- witness;
@@ -1638,14 +1655,19 @@ module M = {
     st <@ __state_init_ref (st);
     (st,  _0) <@ a1568____absorb_ref (st, 0, in_0, 6, 136);
     (* Erased call to unspill *)
-    ( _1, out) <@ a32____squeeze_ref (st, out, 136);
+    (aux, aux_0) <@ a32____squeeze_ref (st, out, 136);
+     _1 <-
+    (Array200.init (fun i => (get8 (WArray200.init64 (fun i => aux.[i])) i)));
+    out <- aux_0;
     return out;
   }
   proc _sha3_512A_A64 (out:W8.t Array64.t, in_0:W8.t Array64.t) : W8.t Array64.t = {
+    var aux:W64.t Array25.t;
+    var aux_0:W8.t Array64.t;
     var st_s:W64.t Array25.t;
     var st:W64.t Array25.t;
     var  _0:int;
-    var  _1:W64.t Array25.t;
+    var  _1:W8.t Array200.t;
      _1 <- witness;
     st <- witness;
     st_s <- witness;
@@ -1654,7 +1676,10 @@ module M = {
     (* Erased call to spill *)
     (st,  _0) <@ a64____absorb_ref (st, 0, in_0, 6, 72);
     (* Erased call to unspill *)
-    ( _1, out) <@ a64____squeeze_ref (st, out, 72);
+    (aux, aux_0) <@ a64____squeeze_ref (st, out, 72);
+     _1 <-
+    (Array200.init (fun i => (get8 (WArray200.init64 (fun i => aux.[i])) i)));
+    out <- aux_0;
     return out;
   }
   proc _poly_add2 (rp:W16.t Array256.t, bp:W16.t Array256.t) : W16.t Array256.t = {
@@ -2370,7 +2395,7 @@ module M = {
     var aux_0:W16.t Array256.t;
     var aux:W8.t Array384.t;
     var i:int;
-    var  _0:W16.t Array256.t;
+    var  _0:W8.t Array512.t;
      _0 <- witness;
     i <- 0;
     while ((i < 4)) {
@@ -2384,7 +2409,9 @@ module M = {
                                                                   (384 * i))] else 
                   rp.[i_0]))
       );
-       _0 <- aux_0;
+       _0 <-
+      (Array512.init
+      (fun i_0 => (get8 (WArray512.init16 (fun i_0 => aux_0.[i_0])) i_0)));
       i <- (i + 1);
     }
     return rp;
