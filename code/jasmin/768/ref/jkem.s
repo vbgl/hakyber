@@ -1,19 +1,12 @@
 	.att_syntax
 	.text
 	.p2align	5
-	.global	_jade_kem_mlkem_mlkem768_amd64_ref_dec
 	.global	jade_kem_mlkem_mlkem768_amd64_ref_dec
-	.global	_jade_kem_mlkem_mlkem768_amd64_ref_enc
 	.global	jade_kem_mlkem_mlkem768_amd64_ref_enc
-	.global	_jade_kem_mlkem_mlkem768_amd64_ref_enc_derand
 	.global	jade_kem_mlkem_mlkem768_amd64_ref_enc_derand
-	.global	_jade_kem_mlkem_mlkem768_amd64_ref_keypair
 	.global	jade_kem_mlkem_mlkem768_amd64_ref_keypair
-	.global	_jade_kem_mlkem_mlkem768_amd64_ref_keypair_derand
 	.global	jade_kem_mlkem_mlkem768_amd64_ref_keypair_derand
-	.type	_jade_kem_mlkem_mlkem768_amd64_ref_dec, %function
 	.type	jade_kem_mlkem_mlkem768_amd64_ref_dec, %function
-_jade_kem_mlkem_mlkem768_amd64_ref_dec:
 jade_kem_mlkem_mlkem768_amd64_ref_dec:
 	movq	%rsp, %rax
 	leaq	-18048(%rsp), %rsp
@@ -8150,9 +8143,7 @@ Ljade_kem_mlkem_mlkem768_amd64_ref_dec$1:
 	movq	18032(%rsp), %r15
 	movq	18040(%rsp), %rsp
 	ret
-	.type	_jade_kem_mlkem_mlkem768_amd64_ref_enc, %function
 	.type	jade_kem_mlkem_mlkem768_amd64_ref_enc, %function
-_jade_kem_mlkem_mlkem768_amd64_ref_enc:
 jade_kem_mlkem_mlkem768_amd64_ref_enc:
 	movq	%rsp, %rax
 	leaq	-15744(%rsp), %rsp
@@ -9919,15 +9910,15 @@ Ljade_kem_mlkem_mlkem768_amd64_ref_enc$2:
 	leaq	3912(%rsp), %rax
 	call	L_i_poly_compress$1
 Ljade_kem_mlkem_mlkem768_amd64_ref_enc$1:
-	movq	8(%rsp), %rax
-	movq	184(%rsp), %rcx
-	movq	%rcx, (%rax)
-	movq	192(%rsp), %rcx
-	movq	%rcx, 8(%rax)
-	movq	200(%rsp), %rcx
-	movq	%rcx, 16(%rax)
-	movq	208(%rsp), %rcx
-	movq	%rcx, 24(%rax)
+	movq	8(%rsp), %rcx
+	movq	184(%rsp), %rax
+	movq	%rax, (%rcx)
+	movq	192(%rsp), %rax
+	movq	%rax, 8(%rcx)
+	movq	200(%rsp), %rax
+	movq	%rax, 16(%rcx)
+	movq	208(%rsp), %rax
+	movq	%rax, 24(%rcx)
 	movq	%mm0, %rsi
 	movq	%mm1, %rdi
 	movq	616(%rsp), %rax
@@ -10219,9 +10210,7 @@ Ljade_kem_mlkem_mlkem768_amd64_ref_enc$1:
 	movq	15728(%rsp), %r15
 	movq	15736(%rsp), %rsp
 	ret
-	.type	_jade_kem_mlkem_mlkem768_amd64_ref_enc_derand, %function
 	.type	jade_kem_mlkem_mlkem768_amd64_ref_enc_derand, %function
-_jade_kem_mlkem_mlkem768_amd64_ref_enc_derand:
 jade_kem_mlkem_mlkem768_amd64_ref_enc_derand:
 	movq	%rsp, %rax
 	leaq	-15744(%rsp), %rsp
@@ -11981,15 +11970,15 @@ Ljade_kem_mlkem_mlkem768_amd64_ref_enc_derand$2:
 	leaq	3912(%rsp), %rax
 	call	L_i_poly_compress$1
 Ljade_kem_mlkem_mlkem768_amd64_ref_enc_derand$1:
-	movq	8(%rsp), %rax
-	movq	184(%rsp), %rcx
-	movq	%rcx, (%rax)
-	movq	192(%rsp), %rcx
-	movq	%rcx, 8(%rax)
-	movq	200(%rsp), %rcx
-	movq	%rcx, 16(%rax)
-	movq	208(%rsp), %rcx
-	movq	%rcx, 24(%rax)
+	movq	8(%rsp), %rcx
+	movq	184(%rsp), %rax
+	movq	%rax, (%rcx)
+	movq	192(%rsp), %rax
+	movq	%rax, 8(%rcx)
+	movq	200(%rsp), %rax
+	movq	%rax, 16(%rcx)
+	movq	208(%rsp), %rax
+	movq	%rax, 24(%rcx)
 	movq	%mm0, %rsi
 	movq	%mm1, %rdi
 	movq	616(%rsp), %rax
@@ -12281,9 +12270,7 @@ Ljade_kem_mlkem_mlkem768_amd64_ref_enc_derand$1:
 	movq	15728(%rsp), %r15
 	movq	15736(%rsp), %rsp
 	ret
-	.type	_jade_kem_mlkem_mlkem768_amd64_ref_keypair, %function
 	.type	jade_kem_mlkem_mlkem768_amd64_ref_keypair, %function
-_jade_kem_mlkem_mlkem768_amd64_ref_keypair:
 jade_kem_mlkem_mlkem768_amd64_ref_keypair:
 	movq	%rsp, %rax
 	leaq	-14032(%rsp), %rsp
@@ -14875,9 +14862,7 @@ Ljade_kem_mlkem_mlkem768_amd64_ref_keypair$1:
 	movq	14016(%rsp), %r15
 	movq	14024(%rsp), %rsp
 	ret
-	.type	_jade_kem_mlkem_mlkem768_amd64_ref_keypair_derand, %function
 	.type	jade_kem_mlkem_mlkem768_amd64_ref_keypair_derand, %function
-_jade_kem_mlkem_mlkem768_amd64_ref_keypair_derand:
 jade_kem_mlkem_mlkem768_amd64_ref_keypair_derand:
 	movq	%rsp, %rax
 	leaq	-14032(%rsp), %rsp
@@ -24304,7 +24289,6 @@ L_pround_ref$1:
 	ret
 	.data
 	.p2align	5
-_glob_data:
 glob_data:
 G$KECCAK1600_RC:
 	.byte	  1,   0,   0,   0,   0,   0,   0,   0, 130, 128,   0,   0,   0,   0,   0,   0
@@ -24353,3 +24337,5 @@ G$jzetas:
 	.byte	 66,   8, 121,  12, 194,   4, 202,   7, 151,   9, 220,   0,  94,   8, 134,   6
 	.byte	 96,   8,   7,   7,   3,   8,  26,   3,  27,   7, 171,   9, 155,   9, 222,   1
 	.byte	149,  12, 205,  11, 228,   3, 223,   3, 190,   3,  77,   7, 242,   5,  92,   6
+	.ident	"Jasmin Compiler development version at commit 65bd039b152789f7c67a8ab069b69e5050dc1b69 on branch main"
+	.section	".note.GNU-stack", "", %progbits
