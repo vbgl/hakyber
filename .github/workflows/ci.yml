@@ -26,7 +26,7 @@ jobs:
             size: [ '768', '1024' ]
             dir: [ 'ref', 'avx2' ]
         steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v6
           with:
             submodules: recursive
         - uses: cachix/install-nix-action@v31
@@ -39,7 +39,7 @@ jobs:
         name: Test MLKEM implementation checksums
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v6
           with:
             submodules: recursive
         - uses: cachix/install-nix-action@v31
@@ -54,7 +54,7 @@ jobs:
       name: Test memory safety of MLKEM implementation
       runs-on: ubuntu-latest
       steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: recursive
       - uses: cachix/install-nix-action@v31
