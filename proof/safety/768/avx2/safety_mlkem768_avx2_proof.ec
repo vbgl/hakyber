@@ -2,7 +2,7 @@ require import AllCore IntDiv CoreMap List Distr.
 
 from JazzEC require import Safety_mlkem768_avx2.
  
-from Jasmin require import Jcheck JSafety.
+from Jasmin require import Jcheck.
 
 (* The post and trace are valid. *)
 
