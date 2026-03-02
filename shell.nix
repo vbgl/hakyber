@@ -13,8 +13,8 @@ let jasmin =
     src = fetchFromGitLab {
       owner = "jasmin-lang";
       repo = "jasmin-compiler";
-      rev = "731add92e577d47afa1b88c8a80b3216af29ee40";
-      hash = "sha256-2VfTqnQMioiPAdgQGAfUA4GT/r3CLO5HmzBd532S5NI=";
+      rev = "dffe47ba77af5ffb511a8396ee925a5f7bf51644";
+      hash = "sha256-BYm+ZBxB6YBE7VCUdrlje7jXSDYOtED2Pka3UdlGn4Q=";
     };
   })
 ; in
@@ -32,8 +32,8 @@ let formosa-keccak =
   fetchFromGitHub {
     owner = "formosa-crypto";
     repo = "formosa-keccak";
-    rev = "623dee16d4619f84a635bc3e226ccb5bd8ea0d04";
-    hash = "sha256-4kHr5uiYbh3qnAt6qg8yl1LVE+l+70lO3uESZm3pklc=";
+    rev = "4ddcd7a9465bf4ad6b2d60c12059ad0010d5456a";
+    hash = "sha256-HRUj7XcMUzCrpkoxm7I9G8/2Ms9XJ3bndMrxFk+7tJg=";
   }
 ; in
 
