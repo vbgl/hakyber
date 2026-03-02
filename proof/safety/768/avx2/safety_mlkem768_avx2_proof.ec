@@ -1526,12 +1526,8 @@ auto .
 ecall (__shuffle8_proof param_2 param_1).
 auto .
 ecall (__shuffle8_proof param_0 param).
-auto .
-rewrite /is_init /valid /= => &m /> *.
-split; smt (List.all_cat). 
-auto .
-rewrite /is_init /valid /= .
-smt (List.all_cat).
+auto => &m /> *. smt(valid_cat BArray512.is_init_cell_set256d).
+auto => &m /> /#.
 qed .
 
 lemma _poly_frommont_proof _rp _b_rp : (_poly_frommont_spec _rp _b_rp).
@@ -1541,12 +1537,8 @@ proc; auto .
 while ((valid trace__poly_frommont) /\ 0<=i).
 auto .
 ecall (__fqmulx16_proof param_2 param_1 param_0 param).
-auto .
-rewrite /is_init /valid /=.
-smt (List.all_cat).
-auto .
-rewrite /is_init /valid /= .
-smt (List.all_cat BArray512.init_arrP).
+auto => &m /> *; smt(valid_cat).
+auto => &m /> *; smt(BArray512.initiE).
 qed .
 
 lemma _i_poly_frommsg_proof _rp _b_rp _ap _b_ap :
@@ -1556,12 +1548,8 @@ rewrite /_i_poly_frommsg_spec .
 proc; auto .
 while ((valid trace__i_poly_frommsg) /\ 0<= i<=4 /\ BArray512.is_init b_rp 0 ((32 * i) * 2) /\
            (BArray512.is_init b_rp 256 ((32 * i) * 2))).
-auto .
-rewrite /is_init /valid /=.
-smt (List.all_cat).
-auto .
-rewrite /is_init /valid /= .
-smt (List.all_cat).
+auto => &m /> *. smt(valid_cat BArray512.is_init_cell_set256d).
+auto => &m /> /#.
 qed .
 
 lemma __cbd2_proof _rp _b_rp _buf _b_buf :
@@ -1570,12 +1558,8 @@ proof.
 rewrite /__cbd2_spec .
 proc; auto .
 while ((valid trace___cbd2) /\ 0 <= i <= 4 /\ (BArray512.is_init b_rp 0 ((32 * i) * 4))).
-auto .
-rewrite /is_init /valid /=.
-smt (List.all_cat).
-auto .
-rewrite /is_init /valid /= .
-smt (List.all_cat).
+auto => &m /> *. smt(valid_cat BArray512.is_init_cell_set256d).
+auto => &m /> /#.
 qed .
 
 lemma __poly_cbd_eta1_proof _rp _b_rp _buf _b_buf :
@@ -1584,9 +1568,8 @@ proof.
 rewrite /__poly_cbd_eta1_spec .
 proc; auto .
 ecall (__cbd2_proof param_0 b_param_0 param b_param).
-auto .
-rewrite /is_init /valid /= .
-smt (List.all_cat SBArray128_128.SBArray128_128.is_init_cell_get BArray512.init_arrP).
+auto => &m /> *; split. smt(SBArray128_128.SBArray128_128.is_init_cell_get).
+smt(valid_cat BArray512.init_arrP).
 qed .
 
 
@@ -1612,10 +1595,10 @@ ecall (_shake256x4_A128__A32_A1_proof param_4 b_param_7 param_3 b_param_6
        param_2 b_param_5 param_1 b_param_4 param_0 (BArray32.init_arr
                                                    (JWord.W8.of_int 255)) param 
        b_param_3).
-auto .
-rewrite /is_init /valid /= .
-smt (List.all_cat BArray128.init_arrP BArray32.init_arrP BArray512.init_arrP).
-qed .
+auto => &m /> *; split. smt(BArray32.init_arrP BArray4.is_init_set_last).
+move => *; split. smt(BArray128.init_arrP).
+smt(valid_cat BArray512.init_arrP).
+qed.
 
 lemma __invntt___butterfly64x_proof _rl0 _rl1 _rl2 _rl3 _rh0 _rh1 _rh2 _rh3 _zl0 _zl1 _zh0 _zh1 _qx16 :
       (__invntt___butterfly64x_spec _rl0 _rl1 _rl2 _rl3 _rh0 _rh1 _rh2 
