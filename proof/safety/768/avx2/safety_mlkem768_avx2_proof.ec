@@ -1701,10 +1701,8 @@ auto .
 ecall (__invntt___butterfly64x_proof param_11 param_10 param_9 param_8 
        param_7 param_6 param_5 param_4 param_3 param_2 param_1 param_0 
        param).
-auto .
-rewrite /is_init /valid /= => &m /> *. split; move => *; rewrite !List.all_cat /=. smt(). smt().
-auto .
-rewrite /is_init /valid /= => &m /> *. split. smt(). 
+auto => &m /> *. smt(valid_cat).
+auto => &m /> *.
 smt (BArray512.init_arrP).
 qed .
 
@@ -2378,9 +2376,7 @@ proof.
 rewrite /__indcpa_keypair_spec .
 proc; auto .
 while ((valid trace___indcpa_keypair) /\  0<=i /\ i<=4 /\ BArray32.is_init b_publicseed 0 32 /\ BArray1184.is_init b_pk 0 ((i + 144)*8)).
-auto .
-rewrite /is_init /valid /=.
-smt (List.all_cat).
+auto => &m /> *. smt(valid_cat BArray1184.is_init_cell_set64d).
 auto .
 ecall (__i_polyvec_tobytes_proof param_28 b_param param_27 (
                                                            BArray1536.init_arr
@@ -2401,10 +2397,8 @@ ecall (_poly_frommont_proof param_21 b_param_2).
 auto .
 ecall (__polyvec_pointwise_acc_proof param_20 b_param_4 param_19 b_param_3 
        param_18 (BArray1536.init_arr (JWord.W8.of_int 255))).
-auto .
-rewrite /is_init /valid /= => &m /> *.
-split. smt(BArray1536.init_arrP SBArray4608_1536.SBArray4608_1536.is_init_cell_get). move => *.
-smt(SBArray1536_512.SBArray1536_512.is_init_cell_get SBArray1536_512.SBArray1536_512.is_init_cell_set BArray512.init_arrP all_cat). 
+auto => &m /> *; split. smt(SBArray4608_1536.SBArray4608_1536.is_init_cell_get BArray1536.init_arrP).
+smt(SBArray1536_512.SBArray1536_512.is_init_cell_get SBArray1536_512.SBArray1536_512.is_init_cell_set BArray512.init_arrP valid_cat).
 auto .
 ecall (__polyvec_ntt_proof param_17 b_param_5).
 auto .
@@ -2419,27 +2413,23 @@ auto .
 ecall (_gen_matrix_avx2_proof param_3 b_param_18 param_2 b_param_17 param_1).
 auto .
 while ((valid trace___indcpa_keypair) /\ 0<=i /\ i<=4 /\ BArray32.is_init b_publicseed 0 (i*8) /\ BArray32.is_init b_noiseseed 0 (i*8)).
-auto .
-rewrite /is_init /valid /=.
-smt (List.all_cat).
+auto => &m /> *. smt(valid_cat BArray32.is_init_cell_set64d).
 auto .
 ecall (_sha3_512A_A33_proof param_0 b_param_20 param b_param_19).
 auto .
 while ((valid trace___indcpa_keypair) /\  0<=i /\ i<=4  /\ BArray33.is_init b_inbuf 0 (8*i) ).
-auto .
-rewrite /is_init /valid /=.
-smt (List.all_cat). 
-auto .
-rewrite /is_init /valid /= => &m /> *.
-split. smt(BArray33.init_arrP).
-move => *. split.  smt().
-move => *. split. rewrite !List.all_cat /=. smt().
-move => *. split. smt().
-move => *. split. smt().
-move => *. split. move => 3?. rewrite !SBArray1536_512.SBArray1536_512.is_init_cell_set /=. smt(BArray512.init_arrP).
-move =>* . split. rewrite !List.all_cat /= => /> *. smt(BArray4608.init_arrP BArray512.init_arrP SBArray1536_512.SBArray1536_512.is_init_cell_set).
-move => *. split. smt(BArray1536.init_arrP).
-move => *. rewrite !List.all_cat /=. smt(BArray1152.init_arrP SBArray1184_1152.SBArray1184_1152.is_init_cell_set).
+auto => &m /> *. smt(valid_cat BArray33.is_init_cell_set64d).
+auto => &m /> *; split. smt().
+move => *; split. smt(BArray33.is_init_set_last).
+move => *; split. smt(valid_cat).
+move => *; split. smt().
+move => *; split. smt().
+move => *; split. smt(SBArray1536_512.SBArray1536_512.is_init_cell_set BArray512.init_arrP).
+move => *; split. split. smt(valid_cat). split. smt(SBArray1536_512.SBArray1536_512.is_init_cell_set BArray512.init_arrP).
+  smt(BArray4608.init_arrP).
+move => *; split. smt(BArray1536.init_arrP).
+move => *; split. split. smt(valid_cat). smt(BArray1152.init_arrP SBArray1184_1152.SBArray1184_1152.is_init_cell_set).
+smt(BArray1152.init_arrP).
 qed .
 
 lemma __indcpa_enc_proof _ct _b_ct _msgp _b_msgp _pk _b_pk _noiseseed _b_noiseseed :
@@ -2483,10 +2473,9 @@ while ((valid trace___indcpa_enc) /\  0<=w /\ w<=3 /\ BArray1536.is_init b_bp 0 
 auto .
 ecall (__polyvec_pointwise_acc_proof param_20 b_param_5 param_19 b_param_4 
        param_18 (BArray1536.init_arr (JWord.W8.of_int 255))).
-auto .
-rewrite /is_init /valid /= => &m /> *.
-split. smt(BArray1536.init_arrP SBArray4608_1536.SBArray4608_1536.is_init_cell_get). move => *.
- smt(all_cat SBArray1536_512.SBArray1536_512.is_init_cell_set BArray512.init_arrP).
+auto => &m /> *; split.
+smt(BArray1536.init_arrP SBArray4608_1536.SBArray4608_1536.is_init_cell_get).
+ smt(valid_cat SBArray1536_512.SBArray1536_512.is_init_cell_set BArray512.init_arrP).
 auto .
 ecall (__polyvec_ntt_proof param_17 b_param_6).
 auto .
@@ -2506,24 +2495,20 @@ ecall (_i_poly_frommsg_proof param_1 b_param_17 param_0 (BArray32.init_arr
                                                         (JWord.W8.of_int 255))).
 auto .
 while ((valid trace___indcpa_enc) /\  0<=w /\  w <= 4 /\ BArray32.is_init b_publicseed 0 (8*w)).
-auto .
-rewrite /is_init /valid /=.
-smt (List.all_cat).
+auto => &m /> *. smt(valid_cat BArray32.is_init_cell_set64d).
 auto .
 ecall (__i_polyvec_frombytes_proof param b_param_18).
-auto .
-rewrite /is_init /valid /= => &m /> *.
-split. smt( SBArray1184_1152.SBArray1184_1152.is_init_cell_get).
-move => *. split. smt(List.all_cat).
-move => * . split. smt(BArray32.init_arrP).
-move => *. split. smt().
-move => *. split. smt(SBArray1536_512.SBArray1536_512.is_init_cell_get SBArray1536_512.SBArray1536_512.is_init_cell_set  BArray512.init_arrP).
-move => *. split. rewrite !List.all_cat /=.  smt(BArray4608.init_arrP BArray512.init_arrP SBArray1536_512.SBArray1536_512.is_init_cell_set ).
-move => *. split. smt(BArray1536.init_arrP).
-move => *. split. smt().
-move => *. split. smt(BArray512.init_arrP).
-move => *. split. move => 3?. rewrite !SBArray1088_128.SBArray1088_128.is_init_cell_set SBArray1088_960.SBArray1088_960.is_init_cell_set /=. smt(BArray960.init_arrP BArray128.init_arrP ).
-move =>*. rewrite !List.all_cat /=. smt().
+auto => &m /> *; split. smt(SBArray1184_1152.SBArray1184_1152.is_init_cell_get).
+move => *; split. smt(List.all_cat BArray32.init_arrP).
+move => *; split. smt(BArray32.init_arrP).
+move => *; split. smt().
+move => *; split. smt(SBArray1536_512.SBArray1536_512.is_init_cell_get SBArray1536_512.SBArray1536_512.is_init_cell_set BArray512.init_arrP).
+move => *; split. split. smt(valid_cat). split. smt(SBArray1536_512.SBArray1536_512.is_init_cell_set BArray512.init_arrP). smt(BArray4608.init_arrP).
+move => *; split. smt(BArray1536.init_arrP).
+move => *; split. smt().
+move => *; split. smt(BArray512.init_arrP).
+move => *; split. smt(SBArray1088_960.SBArray1088_960.is_init_cell_set SBArray1088_128.SBArray1088_128.is_init_cell_set BArray960.init_arrP BArray128.init_arrP).
+smt(valid_cat).
 qed .
 
 lemma __indcpa_dec_proof _msgp _b_msgp _ct _b_ct _sk _b_sk :
@@ -2557,15 +2542,13 @@ auto .
 ecall (__i_polyvec_decompress_proof param (
                                                             BArray1088.init_arr
                                                             (JWord.W8.of_int 255))).
-auto .
-rewrite /is_init /valid /= => &m /> *.
-split.  smt(BArray1088.init_arrP).
-move => *. split.  smt(SBArray1088_128.SBArray1088_128.is_init_cell_get).
-move => *. split.  smt(BArray1152.init_arrP).
-move => *. split. smt(BArray1536.init_arrP).
-move => *. split. smt(BArray512.init_arrP).
-move => *. split. smt(BArray32.init_arrP).
-smt (List.all_cat).
+auto => &m /> *; split. smt(BArray1088.init_arrP).
+move => *; split. smt(SBArray1088_128.SBArray1088_128.is_init_cell_get).
+move => *; split. smt(BArray1152.init_arrP).
+move => *; split. smt(BArray1536.init_arrP).
+move => *; split. smt(BArray512.init_arrP).
+move => *; split. smt(BArray32.init_arrP).
+smt (valid_cat).
 qed .
 
 lemma __verify_proof _ct _b_ct _ctpc _b_ctpc :
