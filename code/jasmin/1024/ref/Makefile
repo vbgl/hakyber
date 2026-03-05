@@ -20,13 +20,16 @@ jkem.s: jkem.jazz $(JINC)
 	$(JASMINC) -o $@ $(JFLAGS) jkem.jazz
 
 
-.PHONY: ct clean
+.PHONY: ct clean execute
 
 ct:
 	$(JASMINCT) jkem.jazz
 
 sct:
 	$(JASMINCT) --sct jkem.jazz
+
+execute:
+	$(JASMINC) $(JFLAGS) -until_rmassert execute.jazz
 
 clean:
 	-rm -f *.s

@@ -1,0 +1,31 @@
+require "jkem.jazz"
+
+inline fn test() -> reg bool, reg u256, reg u256 {
+
+  stack u8[1184] public_key;
+  stack u8[2400] secret_key;
+  stack u8[1088] ciphertext;
+  stack u8[32] shared_secret1 shared_secret2;
+
+  #[inline]
+  public_key, secret_key, _ =
+    jade_kem_mlkem_mlkem768_amd64_avx2_keypair(public_key, secret_key);
+
+  #[inline]
+  ciphertext, shared_secret1, _ =
+    jade_kem_mlkem_mlkem768_amd64_avx2_enc(ciphertext, shared_secret1, public_key);
+
+  #[inline]
+  shared_secret2, _ =
+    jade_kem_mlkem_mlkem768_amd64_avx2_dec(shared_secret2, ciphertext, secret_key);
+
+  reg u256
+    s1 = shared_secret1[:u256 0],
+    s2 = shared_secret2[:u256 0];
+
+  reg bool ok = s1 == s2;
+
+  return ok, s1, s2;
+}
+
+exec test()

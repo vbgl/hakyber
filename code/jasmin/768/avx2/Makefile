@@ -25,13 +25,16 @@ pqcp: $(JINC)  jkem.s
 	diff jkem_pqcp.s jkem.s > /dev/null; \
 	if [ $$? -eq 0 ]; then echo "\nALL GOOD!"; else echo "\n!!!ASSEMBLY FILE AFTER TYPING NOT SAME!!!"; fi
 
-.PHONY: ct clean
+.PHONY: ct clean execute
 
 ct:
 	$(JASMINCT) jkem.jazz
 
 sct:
 	$(JASMINCT) --sct jkem.jazz
+
+execute:
+	$(JASMINC) $(JFLAGS) -until_rmassert execute.jazz
 
 clean:
 	-rm -f *.s
