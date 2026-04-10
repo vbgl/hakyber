@@ -32930,5 +32930,5 @@ G$jzetas:
 	.byte	 66,   8, 121,  12, 194,   4, 202,   7, 151,   9, 220,   0,  94,   8, 134,   6
 	.byte	 96,   8,   7,   7,   3,   8,  26,   3,  27,   7, 171,   9, 155,   9, 222,   1
 	.byte	149,  12, 205,  11, 228,   3, 223,   3, 190,   3,  77,   7, 242,   5,  92,   6
-	.ident	"Jasmin Compiler development version at commit 8672fb306790949423ff0057ae81300963f01faf on branch release-2026.03"
+	.ident	"Jasmin Compiler development version at commit bd5276d879bea3a7e00943cb1531366e54baf51b on branch backport-pr-1433"
 	.section	".note.GNU-stack", "", %progbits

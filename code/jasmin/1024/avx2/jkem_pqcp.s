@@ -11453,7 +11453,7 @@ L_i_poly_decompress$1:
 	vmovdqu	glob_data + 384(%rip), %ymm1
 	vmovdqu	glob_data + 352(%rip), %ymm5
 	vmovdqu	glob_data + 320(%rip), %ymm4
-	movq	(%r13), %xmm2
+	vmovq	(%r13), %xmm2
 	movw	8(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11463,7 +11463,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, (%rcx)
-	movq	10(%r13), %xmm2
+	vmovq	10(%r13), %xmm2
 	movw	18(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11473,7 +11473,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 32(%rcx)
-	movq	20(%r13), %xmm2
+	vmovq	20(%r13), %xmm2
 	movw	28(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11483,7 +11483,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 64(%rcx)
-	movq	30(%r13), %xmm2
+	vmovq	30(%r13), %xmm2
 	movw	38(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11493,7 +11493,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 96(%rcx)
-	movq	40(%r13), %xmm2
+	vmovq	40(%r13), %xmm2
 	movw	48(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11503,7 +11503,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 128(%rcx)
-	movq	50(%r13), %xmm2
+	vmovq	50(%r13), %xmm2
 	movw	58(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11513,7 +11513,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 160(%rcx)
-	movq	60(%r13), %xmm2
+	vmovq	60(%r13), %xmm2
 	movw	68(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11523,7 +11523,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 192(%rcx)
-	movq	70(%r13), %xmm2
+	vmovq	70(%r13), %xmm2
 	movw	78(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11533,7 +11533,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 224(%rcx)
-	movq	80(%r13), %xmm2
+	vmovq	80(%r13), %xmm2
 	movw	88(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11543,7 +11543,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 256(%rcx)
-	movq	90(%r13), %xmm2
+	vmovq	90(%r13), %xmm2
 	movw	98(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11553,7 +11553,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 288(%rcx)
-	movq	100(%r13), %xmm2
+	vmovq	100(%r13), %xmm2
 	movw	108(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11563,7 +11563,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 320(%rcx)
-	movq	110(%r13), %xmm2
+	vmovq	110(%r13), %xmm2
 	movw	118(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11573,7 +11573,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 352(%rcx)
-	movq	120(%r13), %xmm2
+	vmovq	120(%r13), %xmm2
 	movw	128(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11583,7 +11583,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 384(%rcx)
-	movq	130(%r13), %xmm2
+	vmovq	130(%r13), %xmm2
 	movw	138(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11593,7 +11593,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 416(%rcx)
-	movq	140(%r13), %xmm2
+	vmovq	140(%r13), %xmm2
 	movw	148(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -11603,7 +11603,7 @@ L_i_poly_decompress$1:
 	vpmullw	%ymm4, %ymm2, %ymm2
 	vpmulhrsw	%ymm0, %ymm2, %ymm2
 	vmovdqu	%ymm2, 448(%rcx)
-	movq	150(%r13), %xmm2
+	vmovq	150(%r13), %xmm2
 	movw	158(%r13), %si
 	vpinsrw	$4, %esi, %xmm2, %xmm2
 	vmovdqu	%xmm2, 16(%rsp)
@@ -14822,15 +14822,15 @@ L_shake256_A32__A1600$1:
 	vmovdqu	8(%rbp,%rcx), %ymm7
 	vpxor	%ymm7, %ymm3, %ymm3
 	movq	40(%rbp,%rcx), %rdx
-	movq	%rdx, %xmm7
+	vmovq	%rdx, %xmm7
 	vmovdqu	48(%rbp,%rcx), %ymm14
 	movq	80(%rbp,%rcx), %rdx
-	movq	%rdx, %xmm8
+	vmovq	%rdx, %xmm8
 	vmovdqu	88(%rbp,%rcx), %ymm13
 	movq	120(%rbp,%rcx), %rdx
 	vpinsrq	$1, %rdx, %xmm7, %xmm7
 	movq	128(%rbp,%rcx), %rdx
-	movq	%rdx, %xmm9
+	vmovq	%rdx, %xmm9
 	movq	$0, %rdx
 	vpinsrq	$1, %rdx, %xmm9, %xmm9
 	vpxor	%xmm10, %xmm10, %xmm10
@@ -14864,15 +14864,15 @@ L_shake256_A32__A1600$7:
 	vmovdqu	8(%rbp,%rcx), %ymm7
 	vpxor	%ymm7, %ymm3, %ymm3
 	movq	40(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm7
+	vmovq	%rdi, %xmm7
 	vmovdqu	48(%rbp,%rcx), %ymm14
 	movq	80(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm8
+	vmovq	%rdi, %xmm8
 	vmovdqu	88(%rbp,%rcx), %ymm13
 	movq	120(%rbp,%rcx), %rdi
 	vpinsrq	$1, %rdi, %xmm7, %xmm7
 	movq	128(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm9
+	vmovq	%rdi, %xmm9
 	movq	$0, %rdi
 	vpinsrq	$1, %rdi, %xmm9, %xmm9
 	vpxor	%xmm10, %xmm10, %xmm10
@@ -14907,15 +14907,15 @@ L_shake256_A32__A1600$6:
 	vmovdqu	8(%rbp,%rcx), %ymm7
 	vpxor	%ymm7, %ymm3, %ymm3
 	movq	40(%rbp,%rcx), %rdx
-	movq	%rdx, %xmm7
+	vmovq	%rdx, %xmm7
 	vmovdqu	48(%rbp,%rcx), %ymm14
 	movq	80(%rbp,%rcx), %rdx
-	movq	%rdx, %xmm8
+	vmovq	%rdx, %xmm8
 	vmovdqu	88(%rbp,%rcx), %xmm9
 	movq	$0, %rdx
 	movq	$31, %rcx
 	orq 	%rcx, %rdx
-	movq	%rdx, %xmm10
+	vmovq	%rdx, %xmm10
 	movq	$0, %rdx
 	vpinsrq	$1, %rdx, %xmm10, %xmm10
 	vinserti128	$1, %xmm10, %ymm9, %ymm13
@@ -14942,7 +14942,7 @@ L_shake256_A32__A1600$6:
 	vpxor	%ymm10, %ymm5, %ymm5
 	movq	$1, %rcx
 	shlq	$63, %rcx
-	movq	%rcx, %xmm7
+	vmovq	%rcx, %xmm7
 	vpxor	%ymm8, %ymm8, %ymm8
 	vinserti128	$0, %xmm7, %ymm8, %ymm8
 	vpxor	%ymm8, %ymm0, %ymm0
@@ -15001,15 +15001,15 @@ L_sha3_256A_A1568$1:
 	vmovdqu	8(%rbp,%rcx), %ymm7
 	vpxor	%ymm7, %ymm3, %ymm3
 	movq	40(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm7
+	vmovq	%rdi, %xmm7
 	vmovdqu	48(%rbp,%rcx), %ymm14
 	movq	80(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm8
+	vmovq	%rdi, %xmm8
 	vmovdqu	88(%rbp,%rcx), %ymm13
 	movq	120(%rbp,%rcx), %rdi
 	vpinsrq	$1, %rdi, %xmm7, %xmm7
 	movq	128(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm9
+	vmovq	%rdi, %xmm9
 	movq	$0, %rdi
 	vpinsrq	$1, %rdi, %xmm9, %xmm9
 	vpxor	%xmm10, %xmm10, %xmm10
@@ -15043,15 +15043,15 @@ L_sha3_256A_A1568$7:
 	vmovdqu	8(%rbp,%rcx), %ymm7
 	vpxor	%ymm7, %ymm3, %ymm3
 	movq	40(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm7
+	vmovq	%rdi, %xmm7
 	vmovdqu	48(%rbp,%rcx), %ymm14
 	movq	80(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm8
+	vmovq	%rdi, %xmm8
 	vmovdqu	88(%rbp,%rcx), %ymm13
 	movq	120(%rbp,%rcx), %rdi
 	vpinsrq	$1, %rdi, %xmm7, %xmm7
 	movq	128(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm9
+	vmovq	%rdi, %xmm9
 	movq	$0, %rdi
 	vpinsrq	$1, %rdi, %xmm9, %xmm9
 	vpxor	%xmm10, %xmm10, %xmm10
@@ -15086,17 +15086,17 @@ L_sha3_256A_A1568$6:
 	vmovdqu	8(%rbp,%rcx), %ymm7
 	vpxor	%ymm7, %ymm3, %ymm3
 	movq	40(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm7
+	vmovq	%rdi, %xmm7
 	vmovdqu	48(%rbp,%rcx), %xmm9
 	movq	64(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm10
+	vmovq	%rdi, %xmm10
 	movq	$0, %rdi
 	movq	$6, %rcx
 	orq 	%rcx, %rdi
 	vpinsrq	$1, %rdi, %xmm10, %xmm10
 	vinserti128	$1, %xmm10, %ymm9, %ymm14
 	movq	$0, %rdi
-	movq	%rdi, %xmm8
+	vmovq	%rdi, %xmm8
 	vpxor	%ymm13, %ymm13, %ymm13
 	movq	$0, %rdi
 	vpinsrq	$1, %rdi, %xmm7, %xmm7
@@ -15121,7 +15121,7 @@ L_sha3_256A_A1568$6:
 	vpxor	%ymm10, %ymm5, %ymm5
 	movq	$1, %rcx
 	shlq	$63, %rcx
-	movq	%rcx, %xmm7
+	vmovq	%rcx, %xmm7
 	vpxor	%ymm8, %ymm8, %ymm8
 	vinserti128	$0, %xmm7, %ymm8, %ymm8
 	vpxor	%ymm8, %ymm0, %ymm0
@@ -15380,7 +15380,7 @@ L_shake128x4_absorb_A32_A2$2:
 	xorq	%r13, 24(%r8,%r12,8)
 	movq	$1, %r9
 	shlq	$63, %r9
-	movq	%r9, %xmm7
+	vmovq	%r9, %xmm7
 	vpbroadcastq	%xmm7, %ymm8
 	vpxor	640(%r8), %ymm8, %ymm8
 	vmovdqu	%ymm8, 640(%r8)
@@ -15451,7 +15451,7 @@ L_shake256x4_A128__A32_A1$7:
 	xorq	%r13, 24(%r8,%r12,8)
 	movq	$1, %rcx
 	shlq	$63, %rcx
-	movq	%rcx, %xmm7
+	vmovq	%rcx, %xmm7
 	vpbroadcastq	%xmm7, %ymm8
 	vpxor	512(%r8), %ymm8, %ymm8
 	vmovdqu	%ymm8, 512(%r8)
@@ -15513,7 +15513,7 @@ L_shake256_A128__A32_A1$1:
 	vpxor	%ymm7, %ymm4, %ymm4
 	vmovdqu	8(%rdi,%rcx), %xmm9
 	movq	24(%rdi,%rcx), %rdx
-	movq	%rdx, %xmm10
+	vmovq	%rdx, %xmm10
 	movq	$0, %rdx
 	vpinsrq	$1, %rdx, %xmm10, %xmm7
 	vinserti128	$1, %xmm7, %ymm9, %ymm7
@@ -15530,7 +15530,7 @@ L_shake256_A128__A32_A1$1:
 	vpxor	%ymm7, %ymm3, %ymm3
 	movq	$1, %rcx
 	shlq	$63, %rcx
-	movq	%rcx, %xmm7
+	vmovq	%rcx, %xmm7
 	vpxor	%ymm8, %ymm8, %ymm8
 	vinserti128	$0, %xmm7, %ymm8, %ymm8
 	vpxor	%ymm8, %ymm0, %ymm0
@@ -15602,17 +15602,17 @@ L_sha3_512A_A64$1:
 	vmovdqu	8(%rbp,%rcx), %ymm7
 	vpxor	%ymm7, %ymm3, %ymm3
 	movq	40(%rbp,%rcx), %rdi
-	movq	%rdi, %xmm7
+	vmovq	%rdi, %xmm7
 	vmovdqu	48(%rbp,%rcx), %xmm9
 	movq	$0, %rdi
 	movq	$6, %rax
 	orq 	%rax, %rdi
-	movq	%rdi, %xmm10
+	vmovq	%rdi, %xmm10
 	movq	$0, %rdi
 	vpinsrq	$1, %rdi, %xmm10, %xmm10
 	vinserti128	$1, %xmm10, %ymm9, %ymm14
 	movq	$0, %rdi
-	movq	%rdi, %xmm8
+	vmovq	%rdi, %xmm8
 	vpxor	%ymm13, %ymm13, %ymm13
 	movq	$0, %rdi
 	vpinsrq	$1, %rdi, %xmm7, %xmm7
@@ -15637,7 +15637,7 @@ L_sha3_512A_A64$1:
 	vpxor	%ymm10, %ymm5, %ymm5
 	movq	$1, %rcx
 	shlq	$63, %rcx
-	movq	%rcx, %xmm7
+	vmovq	%rcx, %xmm7
 	vpxor	%ymm8, %ymm8, %ymm8
 	vinserti128	$1, %xmm7, %ymm8, %ymm8
 	vpxor	%ymm8, %ymm2, %ymm2
@@ -15690,7 +15690,7 @@ L_sha3_512A_A33$1:
 	vpxor	%ymm9, %ymm4, %ymm4
 	vmovdqu	8(%rbp,%rcx), %xmm9
 	movq	24(%rbp,%rcx), %rdx
-	movq	%rdx, %xmm10
+	vmovq	%rdx, %xmm10
 	movq	$0, %rdx
 	movzbq	32(%rbp,%rcx), %rax
 	orq 	$1536, %rax
@@ -15700,7 +15700,7 @@ L_sha3_512A_A33$1:
 	vpxor	%ymm7, %ymm3, %ymm3
 	movq	$1, %rcx
 	shlq	$63, %rcx
-	movq	%rcx, %xmm7
+	vmovq	%rcx, %xmm7
 	vpxor	%ymm8, %ymm8, %ymm8
 	vinserti128	$1, %xmm7, %ymm8, %ymm8
 	vpxor	%ymm8, %ymm2, %ymm2
@@ -16720,5 +16720,5 @@ G$jzetas:
 	.byte	 66,   8, 121,  12, 194,   4, 202,   7, 151,   9, 220,   0,  94,   8, 134,   6
 	.byte	 96,   8,   7,   7,   3,   8,  26,   3,  27,   7, 171,   9, 155,   9, 222,   1
 	.byte	149,  12, 205,  11, 228,   3, 223,   3, 190,   3,  77,   7, 242,   5,  92,   6
-	.ident	"Jasmin Compiler development version at commit 8672fb306790949423ff0057ae81300963f01faf on branch release-2026.03"
+	.ident	"Jasmin Compiler development version at commit bd5276d879bea3a7e00943cb1531366e54baf51b on branch backport-pr-1433"
 	.section	".note.GNU-stack", "", %progbits
